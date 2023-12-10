@@ -1,8 +1,8 @@
-<nav class="p-5 bg-gray-950 shadow md:flex md:items-center md:justify-between">
+<nav class="md:pl-24 md:pr-24 p-6 bg-gray-950 shadow md:flex md:items-center md:justify-between ">
     <div class="flex justify-between items-center">
         <span class="text-2xl font-[Poppins] cursor-pointer font-extrabold">
             <img class="h-12 inline m-3" src="static/media/logos/logo_white.png" alt="thestoryshop">
-            <span class="hidden md:inline text-white">The Story Shop</span> 
+            <!-- <span class="hidden md:inline text-white">The Story Shop</span>  -->
         </span>
 
         <span class="text-3xl cursor-pointer md:hidden block text-white">
