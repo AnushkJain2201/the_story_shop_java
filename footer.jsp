@@ -1,4 +1,4 @@
-<footer class="bg-white dark:bg-gray-950">
+<footer class="bg-white dark:bg-gray-900 sm:ml-0 ml-6">
     <div class="mx-auto w-full max-w-screen-xl p-2 py-4 lg:py-6">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
@@ -44,29 +44,29 @@
           </div>
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-      <div class="sm:flex sm:items-center sm:justify-between">
+      <div class="sm:flex sm:items-center sm:justify-between text-center">
           <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">&copy; 2023 <a href="https://flowbite.com/" class="hover:underline">The Story Shop&#8482;</a>. All Rights Reserved.
           </span>
-          <div class="flex mt-4 sm:justify-center sm:mt-0">
+          <div class="flex mt-4 sm:justify-center sm:mt-0 sm:ml-0 ml-20">
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                 <i class="fa-brands fa-facebook-f w-4 h-4"></i>
-                  <span class="sr-only">Facebook page</span>
+                  
               </a>
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
                 <i class="fa-brands fa-instagram w-4 h-4"></i>
-                  <span class="sr-only">Instagram page</span>
+                  
               </a>
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                <i class="fa-brands fa-twitter w-4 h-4"></i>
-                  <span class="sr-only">Twitter page</span>
+                <i class="fa-brands fa-x-twitter w-4 h-4"></i>
+                  
               </a>
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
                 <i class="fa-brands fa-github w-4 h-4"></i>
-                  <span class="sr-only">GitHub account</span>
+                  
               </a>
               <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
                 <i class="fa-brands fa-linkedin-in w-4 h-4"></i>
-                  <span class="sr-only">Linkedin</span>
+                  
               </a>
           </div>
       </div>

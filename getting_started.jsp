@@ -12,10 +12,10 @@
 </head>
 <body class="flex justify-center items-center min-h-screen bg-[url('static/media/images/signup/bg.jpg')] bg-cover bg-center">
 
-    <div class="wrapper w-[600px] text-white rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-100
+    <div class="wrapper w-[600px] text-white rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100
     ">
         <form action="getting_started.do" method="post" enctype="multipart/form-data">
-            <h1 class="text-[50px] text-center font-bold text-white">Signup Form</h1>
+            <h1 class="text-[50px] text-center font-bold text-black">Signup Form</h1>
 
             <div class="input-box w-full h-[150px] my-[30px] mx-0 relative flex items-center justify-center">
                 <img src="static/media/images/signup/user.png" alt="/" class="h-[170px] w-[170px] rounded-full cursor-pointer" id="image">
