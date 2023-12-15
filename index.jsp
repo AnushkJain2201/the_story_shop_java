@@ -21,10 +21,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=sharpie@400&f[]=tanker@400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://api.fontshare.com/v2/css?f[]=sharpie@400&f[]=tanker@400&f[]=pencerio@50&f[]=stardom@400&display=swap" rel="stylesheet">
 
     <!-- Script for the typewriter effect  -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
@@ -41,16 +38,16 @@
     <%@ include file="header.jsp" %>
 
     <main class="bg-gray-900 md:px-24 px-8">
-      <div class="md:h-[580px] h-[550px] bg-gradient-to-b from-gray-900 to-gray-700 mb-24 rounded-b-[50px] relative">
+      <div class="md:h-[580px] h-[620px] bg-gradient-to-b from-gray-900 to-gray-700 mb-24 rounded-b-[50px] relative">
         <div class="headin md:h-[300px] text-gray-200 flex md:justify-around justify-between items-center flex-col">
           <h1 class="md:text-6xl text-2xl md:mb-0 mb-6">Welcome To <span class="auto-type"></span></h1>
 
-          <p class="text-center md:text-2xl text-lg md:p-6">
+          <p class="text-center md:text-2xl text-lg md:p-6 p-4">
             Step into our enchanting haven of literature, where every book whispers a promise of adventure and knowledge. Immerse yourself in the intoxicating aroma of well-worn pages, as shelves laden with stories from every genre invite you to embark on a journey of boundless imagination. Our bookstore is a sanctuary for bibliophiles, a place where the magic of words comes alive, creating a symphony of stories waiting to be discovered and cherished. Unleash your literary desires and let the pages turn, for within these walls, a universe of captivating narratives awaits your eager embrace.
           </p>
         </div>
 
-        <div class="absolute md:top-[240px] md:left-[450px] top-[382px] left-12 ">
+        <div class="absolute md:top-[240px] md:left-[450px] top-[382px] left-12 md:block hidden">
           <img
             src="static/media/images/landing/Book_log_2.png"
             class="md:h-[450px] h-[225px]"

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="input-box w-full h-[150px] my-[30px] mx-0 relative flex items-center justify-center">
+        <img src="static/media/images/signup/user.png" alt="/" class="h-[170px] w-[170px] rounded-full cursor-pointer" id="image">
+        <input type="file" id="my_file" class="hidden" required>
+    </div>
+
+    <script>
+        // $('#image').click(function(){
+        //     $('#my_file').click()
+        // })
+
+        const dp = document.getElementById("image");
+
+        const fileInp = document.getElementById("my_file");
+
+        dp.onclick = function() {
+            fileInp.click()
+        }
+    </script>
+</body>
+</html>
