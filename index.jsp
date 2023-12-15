@@ -46,13 +46,7 @@
           <h1 class="md:text-6xl text-2xl md:mb-0 mb-6">Welcome To <span class="auto-type"></span></h1>
 
           <p class="text-center md:text-2xl text-lg md:p-6">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
-            culpa asperiores maiores, magnam, vel molestias iure assumenda
-            voluptatum qui numquam facilis quam omnis officia, temporibus at
-            quod similique dolorem non. In deleniti quae, nihil, fuga obcaecati
-            impedit consequatur nam inventore labore similique blanditiis enim
-            minima nemo necessitatibus cum doloremque! Veniam eum aliquam
-            dolores a beatae error officia voluptate odio sit!
+            Step into our enchanting haven of literature, where every book whispers a promise of adventure and knowledge. Immerse yourself in the intoxicating aroma of well-worn pages, as shelves laden with stories from every genre invite you to embark on a journey of boundless imagination. Our bookstore is a sanctuary for bibliophiles, a place where the magic of words comes alive, creating a symphony of stories waiting to be discovered and cherished. Unleash your literary desires and let the pages turn, for within these walls, a universe of captivating narratives awaits your eager embrace.
           </p>
         </div>
 
