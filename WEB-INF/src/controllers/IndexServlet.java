@@ -8,16 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/getting_started.do")
-public class GettingStartedServlet extends HttpServlet {
+@WebServlet("/index.do")
+public class IndexServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Boolean login = Boolean.parseBoolean(request.getParameter("login"));
-
-        String nextPage = "getting_started.jsp";
-        if(login) {
-            nextPage = "login.jsp";
-        }
-
-        request.getRequestDispatcher(nextPage).forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

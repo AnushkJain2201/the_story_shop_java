@@ -24,7 +24,7 @@
             <a href="#" class="text-xl hover:text-cyan-500 duration-500 font-semibold">CONTACT</a>
         </li>
 
-        <a href="getting_started.do"><button class="bg-cyan-400 text-white font-[Poppins] transition-all ease-in duration-500 px-6 py-2 mx-4 hover:bg-cyan-600 rounded font-extrabold">
+        <a href="getting_started.do?login=false"><button class="bg-cyan-400 text-white font-[Poppins] transition-all ease-in duration-500 px-6 py-2 mx-4 hover:bg-cyan-600 rounded font-extrabold">
             Get Started
         </button></a>
     </ul>
