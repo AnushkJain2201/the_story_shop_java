@@ -27,4 +27,8 @@
      Welcome to Tomcat
   </description>
 
+  <listener>
+    <listener-class>listeners.AppListenerImpl</listener-class>
+  </listener>
+
 </web-app>
