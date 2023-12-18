@@ -32,13 +32,13 @@
     
     
     <div class="wrapper md:w-[480px] w-full text-text-gray-800 rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-spacing-2 border-gray-800">
-        <form action="getting_started.do" method="post">
+        <form action="getting_started.do?login=true" method="post">
             <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">LOG IN</h1>
 
             
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="text" placeholder="Email" required class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="text" placeholder="Email" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-envelope absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
                     <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Write Correct Email</span>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="password" placeholder="Password" required class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="password" placeholder="Password" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-lock absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
                     <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Password must be 8 letter long</span>
@@ -55,7 +55,7 @@
 
             
 
-            <button type="submit" class="btn w-full h-11 bg-gray-800 rounded-[40px] shadow-[0 0 10px rgba(0, 0, 0, .1)] cursor-pointer text-[18px] text-white font-semibold headin">Sign Up</button>
+            <button type="submit" class="btn w-full h-11 bg-gray-800 rounded-[40px] shadow-[0 0 10px rgba(0, 0, 0, .1)] cursor-pointer text-[18px] text-white font-semibold headin">Log In</button>
 
             <div class="register-link text-[14.5px] text-center mt-5">
                 <p class="text-gray-900">Don't have an account? <a href="getting_started.do?login=false" class="text-black font-semibold hover:underline">Signup Here</a></p>

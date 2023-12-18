@@ -20,4 +20,21 @@ public class GettingStartedServlet extends HttpServlet {
 
         request.getRequestDispatcher(nextPage).forward(request, response);
     }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Boolean login = Boolean.parseBoolean(request.getParameter("login"));
+
+        String nextPage = "verify_email.jsp";
+        
+        if(login) {
+
+            // Match the password in the database
+            nextPage = "profile.jsp";
+        }
+        else {
+            
+            // Save details of user in the database
+        }
+        response.sendRedirect(nextPage);
+    }
 }
