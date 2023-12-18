@@ -26,6 +26,7 @@
 
 
 <body class="flex justify-center items-center min-h-screen bg-[url('static/media/images/signup/bg3.jpg')] bg-cover bg-center flex-col relative">
+    
     <a href="index.do">
         <div class="absolute top-8 left-8 text-3xl text-white cursor-pointer">
             <i class="fa-solid fa-arrow-left"></i>
@@ -34,35 +35,36 @@
     
     
     <div class="wrapper md:w-[480px] w-full text-text-gray-800 rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-spacing-2 border-gray-800">
-        <form action="getting_started.do" method="post">
+        <form action="getting_started.do" method="post" onsubmit="return validateForm()">
             <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">SIGN UP</h1>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="text" placeholder="Full Name" required class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="text" placeholder="Full Name" name="fullname" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-user absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Write Correct Name</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible" id="fullname_err">Please Fill A Full Name</span>
                 </div>
             </div>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="text" placeholder="Email" required class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="text" placeholder="Email" name="email" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-envelope absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Write Correct Email</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible" id="email_err">Please Fill An Email</span>
                 </div>
             </div>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="password" placeholder="Password" required class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="password" placeholder="Password" name="password" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-lock absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Password must be 8 letter long</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible"
+                    id="password_err">Please Fill The Password</span>
                 </div>
             </div>
 
             <div class="input-box w-full h-[80px] my-[10px] mx-0 relative text-[20px]">
-                <select class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 ">
+                <select name="country" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 ">
                     <option value="0">Select Your Country</option>
 
                     <c:forEach var="country" items="${countries}" varStatus="n">
@@ -71,15 +73,15 @@
                     
                 </select>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Select A Country</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible" id="country_err">Please Select A Country</span>
                 </div>
             </div>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="text" placeholder="Phone" required class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="text" placeholder="Phone" name="phone" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-phone absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Write A Aceepted Phone Number</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible" id="phone_err">Please Fill A Phone Number</span>
                 </div>
             </div>
 
@@ -105,5 +107,7 @@
         </form>
 
     </div>
+
+    <script src="static/js/signup.js"></script>
 </body>
 </html>
