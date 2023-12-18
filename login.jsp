@@ -38,22 +38,20 @@
             
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="text" placeholder="Email" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="text" placeholder="Email" name="email" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-envelope absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Write Correct Email</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible" id="email_err">Please Fill An Email</span>
                 </div>
             </div>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
-                <input type="password" placeholder="Password" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
+                <input type="password" placeholder="Password" name="password" class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 py-7 placeholder:text-gray-800 mb-0">
                 <i class="fa-solid fa-lock absolute right-[20px] top-[25%]"></i>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
-                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Password must be 8 letter long</span>
+                    <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible" id="password_err">Please Fill A Password</span>
                 </div>
             </div>
-
-            
 
             <button type="submit" class="btn w-full h-11 bg-gray-800 rounded-[40px] shadow-[0 0 10px rgba(0, 0, 0, .1)] cursor-pointer text-[18px] text-white font-semibold headin">Log In</button>
 
@@ -64,5 +62,7 @@
         </form>
 
     </div>
+
+    <script src="static/js/login.js"></script>
 </body>
 </html>

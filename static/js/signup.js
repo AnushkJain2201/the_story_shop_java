@@ -46,7 +46,6 @@ const handleDataValidation = (e) => {
 
 // Function for focus event
 const handleFocusEvent = (e) => {
-    console.log("Andar hu");
     if(e.target.name === fullNameField.name) {
         fullnameErr.classList.replace('visible', 'invisible');  
     }
