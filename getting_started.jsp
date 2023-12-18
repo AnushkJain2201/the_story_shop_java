@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,26 +63,12 @@
 
             <div class="input-box w-full h-[80px] my-[10px] mx-0 relative text-[20px]">
                 <select class="w-full h-[70%] bg-transparent border-2 border-gray-800 outline-none rounded-[40px] px-7 ">
-                    <option value="0">Select</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">India</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
-                    <option value="1">Guju</option>
+                    <option value="0">Select Your Country</option>
+
+                    <c:forEach var="country" items="${countries}" varStatus="n">
+                        <option value="${n.count}"><c:out value="${country.name}" /></option>
+                    </c:forEach> 
+                    
                 </select>
                 <div class="animate__animated animate__flash animate__infinite animate__slower">
                     <span class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium">Please Select A Country</span>
