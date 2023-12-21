@@ -21,7 +21,15 @@ let passwordField = form["password"];
 let counrtyField = form["country"];
 let phoneField = form["phone"];
 
+// The Regex Patterns
 let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+const checkDuplicateEmail = async(enteredEmail) => {
+    let response = await fetch(`check_duplicate_email.do?enteredEmail=${enteredEmail}`);
+    let result = await response.text();
+
+    return result;
+}
 
 const handleSubmit = () => {
     let flagFinal = true;
@@ -60,9 +68,17 @@ const handleDataValidation = (e) => {
             emailErr.classList.replace('invisible', 'visible');
             flag2 = false;
         } else if(!emailPattern.test(emailField.value)) {
-            emailErr.innerText = "Please Enter A Correct Email!!"
+            emailErr.innerText = "Please Enter A Correct Email!!";
             emailErr.classList.replace('invisible', 'visible');
             flag2 = false;
+        } else {
+            checkDuplicateEmail(emailField.value).then((data) => {
+                if(data == 'true') {
+                    emailErr.innerText = "An Accout With This Email Already Exist!! Please Login!!";
+                    emailErr.classList.replace('invisible', 'visible');
+                    flag2 = false;
+                }
+            })
         }
     }
     else if(e.target.name === passwordField.name) {
@@ -92,6 +108,7 @@ const handleFocusEvent = (e) => {
         flag1 = true; 
     }
     else if(e.target.name === emailField.name) {
+        emailErr.innerText = "Please Enter A Email"
         emailErr.classList.replace('visible', 'invisible');
         flag2 = true;
     }

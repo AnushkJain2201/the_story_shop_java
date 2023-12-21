@@ -3,6 +3,7 @@ package models;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -53,6 +54,31 @@ public class User {
         this.bio = bio;
         this.userType = userType;
         this.hasPremium = hasPremium;
+    }
+
+    public static boolean checkDuplicateEmail(String enteredEmail) {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "select user_id from users where email = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            ps.setString(1, enteredEmail);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
     }
 
     public boolean signUpUser() {
