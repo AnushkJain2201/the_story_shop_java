@@ -15,6 +15,10 @@ public class Country {
 
     }
 
+    public Country(Integer countryId) {
+        this.countryId = countryId;
+    }
+
      public Country(Integer countryId, String name) {
         this.countryId = countryId;
         this.name = name;

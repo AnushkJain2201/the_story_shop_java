@@ -13,6 +13,10 @@ public class Status {
         this.status = status;
     }
 
+    public Status(int statusId) {
+        this.statusId = statusId;
+    }
+
     public Integer getStatusId() {
         return statusId;
     }
