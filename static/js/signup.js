@@ -23,9 +23,18 @@ let phoneField = form["phone"];
 
 // The Regex Patterns
 let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+let phonePattern = /^[6-9][0-9]{9}$/;
 
+// Fetch APIs for duplicacy test of email and phone
 const checkDuplicateEmail = async(enteredEmail) => {
     let response = await fetch(`check_duplicate_email.do?enteredEmail=${enteredEmail}`);
+    let result = await response.text();
+
+    return result;
+}
+
+const checkDuplicatePhone = async(enteredPhone) => {
+    let response = await fetch(`check_duplicate_phone.do?enteredPhone=${enteredPhone}`);
     let result = await response.text();
 
     return result;
@@ -97,6 +106,18 @@ const handleDataValidation = (e) => {
         if(phoneField.value == 0) {
             phoneErr.classList.replace('invisible', 'visible');
             flag5 = false;
+        } else if(!phonePattern.test(phoneField.value)) {
+            phoneErr.innerText="Please Enter A Correct Phone Number";
+            phoneErr.classList.replace('invisible', 'visible');
+            flag5 = false;
+        } else {
+            checkDuplicatePhone(phoneField.value).then((data) => {
+                if(data == 'true') {
+                    phoneErr.innerText = "An Account With This Phone Number Already Exist!!";
+                    phoneErr.classList.replace('invisible', 'visible');
+                    flag5 = false;
+                }
+            })
         }
     }
 }
@@ -108,7 +129,7 @@ const handleFocusEvent = (e) => {
         flag1 = true; 
     }
     else if(e.target.name === emailField.name) {
-        emailErr.innerText = "Please Enter A Email"
+        emailErr.innerText = "Please Enter A Email";
         emailErr.classList.replace('visible', 'invisible');
         flag2 = true;
     }
@@ -121,6 +142,7 @@ const handleFocusEvent = (e) => {
         flag4 = true;
     }
     if(e.target.name === phoneField.name) {
+        phoneErr.innerText = "Please Enter A Phone Number";
         phoneErr.classList.replace('visible', 'invisible');
         flag5 = true;
     }

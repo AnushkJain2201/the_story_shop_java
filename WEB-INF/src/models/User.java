@@ -56,6 +56,31 @@ public class User {
         this.hasPremium = hasPremium;
     }
 
+    public static boolean checkDuplicatePhone(String enteredPhone) {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "select user_id from users where phone = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            ps.setString(1, enteredPhone);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
     public static boolean checkDuplicateEmail(String enteredEmail) {
         boolean flag = false;
 
