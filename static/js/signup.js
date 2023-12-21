@@ -21,6 +21,8 @@ let passwordField = form["password"];
 let counrtyField = form["country"];
 let phoneField = form["phone"];
 
+let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
 const handleSubmit = () => {
     let flagFinal = true;
 
@@ -55,6 +57,10 @@ const handleDataValidation = (e) => {
     }
     else if(e.target.name === emailField.name) {
         if(emailField.value == ""){
+            emailErr.classList.replace('invisible', 'visible');
+            flag2 = false;
+        } else if(!emailPattern.test(emailField.value)) {
+            emailErr.innerText = "Please Enter A Correct Email!!"
             emailErr.classList.replace('invisible', 'visible');
             flag2 = false;
         }
