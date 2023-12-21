@@ -5,21 +5,41 @@ const form = document.forms[0];
 const emailErr = document.querySelector('#email_err');
 const passwordErr = document.querySelector('#password_err');
 
+let flag1 = true;
+let flag2 = true;
 
 // Getting the input field
 let emailField = form["email"];
 let passwordField = form["password"];
+
+const handleSubmit = () => {
+    let flagFinal = true;
+    
+    if(emailField.value == "") {
+        emailErr.classList.replace('invisible', 'visible');
+        flagFinal = false;
+    } else if (passwordField.value == "") {
+        passwordErr.classList.replace('invisible', 'visible');
+        flagFinal = false;
+    }
+
+    let flagFinal2 = flag1 && flag2;
+    return flagFinal && flagFinal2;
+}
 
 // Validating the input field value on the blur event
 const handleDataValidation = (e) => {
     if(e.target.name === emailField.name) {
         if(emailField.value == ""){
             emailErr.classList.replace('invisible', 'visible');
+            flag1 = false;
         }
     }
     else if(e.target.name === passwordField.name) {
         if(passwordField.value == ""){
             passwordErr.classList.replace('invisible', 'visible');
+            flag2 = false;
+            
         }
     }
 }
@@ -29,9 +49,11 @@ const handleFocusEvent = (e) => {
     
     if(e.target.name === emailField.name) {
         emailErr.classList.replace('visible', 'invisible');
+        flag1 = true;
     }
     else if(e.target.name === passwordField.name) {
         passwordErr.classList.replace('visible', 'invisible');
+        flag2 = true;
     }
 }
 

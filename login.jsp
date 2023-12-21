@@ -32,7 +32,7 @@
     
     
     <div class="wrapper md:w-[480px] w-full text-text-gray-800 rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-spacing-2 border-gray-800">
-        <form action="getting_started.do?login=true" method="post">
+        <form action="getting_started.do?login=true" method="post" onsubmit= "return handleSubmit()">
             <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">LOG IN</h1>
 
             
