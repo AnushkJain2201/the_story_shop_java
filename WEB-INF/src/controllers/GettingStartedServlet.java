@@ -45,10 +45,11 @@ public class GettingStartedServlet extends HttpServlet {
             String password = request.getParameter("password");
             int countryId = Integer.parseInt(request.getParameter("country"));
             String phone = request.getParameter("phone");
+            boolean userType = request.getParameter("is-author").equals("0") ? false : true;
 
             String OTP = AppUtility.generateOTP();
 
-            User user = new User(name, email, password, new Country(countryId), phone, OTP);
+            User user = new User(name, email, password, new Country(countryId), phone, OTP, userType);
             user.setStatus(new Status(2));
 
             if(user.signUpUser()) {

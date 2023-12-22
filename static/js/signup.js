@@ -22,8 +22,10 @@ let counrtyField = form["country"];
 let phoneField = form["phone"];
 
 // The Regex Patterns
+let fullNamePattern = /^[a-zA-Z ]*$/;
 let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 let phonePattern = /^[6-9][0-9]{9}$/;
+let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 // Fetch APIs for duplicacy test of email and phone
 const checkDuplicateEmail = async(enteredEmail) => {
@@ -70,6 +72,10 @@ const handleDataValidation = (e) => {
         if(fullNameField.value == ""){
             fullnameErr.classList.replace('invisible', 'visible');
             flag1 = false;
+        } else if(!fullNamePattern.test(fullNameField.value)) {
+            fullnameErr.innerText = "Please Write A Proper Full Name!!";
+            fullnameErr.classList.replace('invisible', 'visible');
+            flag1 = false;
         }
     }
     else if(e.target.name === emailField.name) {
@@ -92,6 +98,10 @@ const handleDataValidation = (e) => {
     }
     else if(e.target.name === passwordField.name) {
         if(passwordField.value == ""){
+            passwordErr.classList.replace('invisible', 'visible');
+            flag3 = false;
+        } else if(!passwordPattern.test(passwordField.value)) {
+            passwordErr.innerText = "8 Characters And Atleast A Number And A Letter!!";
             passwordErr.classList.replace('invisible', 'visible');
             flag3 = false;
         }
@@ -125,6 +135,7 @@ const handleDataValidation = (e) => {
 // Function for focus event
 const handleFocusEvent = (e) => {
     if(e.target.name === fullNameField.name) {
+        fullnameErr.innerText = "Please Enter A Full Name";
         fullnameErr.classList.replace('visible', 'invisible'); 
         flag1 = true; 
     }
@@ -134,6 +145,7 @@ const handleFocusEvent = (e) => {
         flag2 = true;
     }
     else if(e.target.name === passwordField.name) {
+        passwordErr.innerText = "Please Enter A Password";
         passwordErr.classList.replace('visible', 'invisible');
         flag3 = true;
     }

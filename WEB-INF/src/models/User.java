@@ -30,13 +30,14 @@ public class User {
 
     }
 
-    public User(String name, String email, String password, Country country, String phone, String OTP) {
+    public User(String name, String email, String password, Country country, String phone, String OTP, Boolean userType) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.country = country;
         this.OTP = OTP;
+        this.userType = userType;
     }
 
     public User(Integer userId, String name, String email, String password, String phone, String address, String profilePic, Integer bookAdded, Country country, Status status, String OTP, String bio, Boolean userType, Boolean hasPremium) {
@@ -112,7 +113,7 @@ public class User {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
 
-            String query = "insert into users (name, email, password, phone, country_id, OTP, status_id) values (?, ?, ?, ?, ?, ?, ?)";
+            String query = "insert into users (name, email, password, phone, country_id, OTP, status_id, user_type) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(query);
 
@@ -123,6 +124,7 @@ public class User {
             ps.setInt(5, country.getCountryId());
             ps.setString(6, OTP);
             ps.setInt(7, status.getStatusId());
+            ps.setInt(8, userType ? 1 : 0);
 
             int result = ps.executeUpdate();
 
