@@ -27,6 +27,16 @@
      Welcome to Tomcat
   </description>
 
+  <context-param>
+    <param-name>from_email</param-name>
+    <param-value>anushk0122@outlook.com</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>from_email_password</param-name>
+    <param-value>1522858Pati</param-value>
+  </context-param>
+
   <listener>
     <listener-class>listeners.AppListenerImpl</listener-class>
   </listener>

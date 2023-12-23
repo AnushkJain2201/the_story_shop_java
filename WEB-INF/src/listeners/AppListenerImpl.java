@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 
 import models.Country;
 import models.Genre;
+import utils.AppUtility;
 
 public class AppListenerImpl implements ServletContextListener{
 
@@ -33,6 +34,14 @@ public class AppListenerImpl implements ServletContextListener{
         ArrayList<Genre> genres = Genre.collectAllGenres();
         context.setAttribute("genres", genres);
         System.out.println("-____Genres Collected____-");
+
+        // Initializing from email and from email password at AppUtility
+        AppUtility.appContext = context;
+
+        AppUtility.fromEmail = context.getInitParameter("from_email");
+        AppUtility.fromEmailPassword = context.getInitParameter("from_email_password");
+
+        System.out.println("-____Values Initialized____-");
     }
 
     public void contextDestroyed(ServletContext e) {

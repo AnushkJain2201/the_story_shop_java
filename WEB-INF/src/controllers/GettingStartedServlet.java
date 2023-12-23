@@ -13,6 +13,7 @@ import models.Country;
 import models.Status;
 
 import utils.AppUtility;
+import utils.EmailSender;
 
 @WebServlet("/getting_started.do")
 public class GettingStartedServlet extends HttpServlet {
@@ -59,6 +60,8 @@ public class GettingStartedServlet extends HttpServlet {
                 user.setStatus(new Status(2));
 
                 if(user.signUpUser()) {
+
+                    EmailSender.sendAccVerificationMail(email, OTP);
                     nextPage = "verify_email.jsp";
                 }
 

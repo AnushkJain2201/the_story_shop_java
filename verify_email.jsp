@@ -28,7 +28,7 @@
                 <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">
                     To complete your account verification process, we have sent a 6-digit One-Time Password (OTP) to the email address associated with your account. Please check your inbox and provide the OTP in the designated field to ensure the security and integrity of your account.
                 </p>
-                <form class="flex justify-center items-center flex-col">
+                <form action="verify_email.do" class="flex justify-center items-center flex-col">
                     <div class="flex mb-2 space-x-2 ">
                         <div>
                             <label for="code-1" class="sr-only">First code</label>
