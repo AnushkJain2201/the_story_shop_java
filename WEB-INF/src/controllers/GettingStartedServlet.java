@@ -29,33 +29,44 @@ public class GettingStartedServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Boolean login = Boolean.parseBoolean(request.getParameter("login"));
-
-        String nextPage = "verify_email.jsp";
         
         if(login) {
 
             // Match the password in the database
-            nextPage = "getting_started.jsp";
         }
         else {
+            String nextPage = "getting_started.jsp";
             
-            // Save details of user in the database
-            String name = request.getParameter("fullname");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            int countryId = Integer.parseInt(request.getParameter("country"));
-            String phone = request.getParameter("phone");
-            boolean userType = request.getParameter("is-author").equals("0") ? false : true;
+            String responseToken = request.getParameter("g-recaptcha-response");
+            String recaptchaURL = "https://www.google.com/recaptcha/api/siteverify";
+            String secretKey = "6LeRqjopAAAAANqCZUXarra-blRVbSEkuQMu3s0n";
 
-            String OTP = AppUtility.generateOTP();
+            // Checking for recaptcha response
+            Boolean flag = AppUtility.checkRecaptchaResponse(recaptchaURL, secretKey, responseToken);
 
-            User user = new User(name, email, password, new Country(countryId), phone, OTP, userType);
-            user.setStatus(new Status(2));
+            if(flag) {
+                // Save details of user in the database
+                String name = request.getParameter("fullname");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                int countryId = Integer.parseInt(request.getParameter("country"));
+                String phone = request.getParameter("phone");
+                boolean userType = request.getParameter("is-author").equals("0") ? false : true;
 
-            if(user.signUpUser()) {
-                nextPage = "verify_email.jsp";
+                String OTP = AppUtility.generateOTP();
+
+                User user = new User(name, email, password, new Country(countryId), phone, OTP, userType);
+                user.setStatus(new Status(2));
+
+                if(user.signUpUser()) {
+                    nextPage = "verify_email.jsp";
+                }
+
+            } else {
+                request.setAttribute("serverErr", "Please Check The Captcha");
             }
+           
+            request.getRequestDispatcher(nextPage).forward(request, response);
         }
-        response.sendRedirect(nextPage);
     }
 }

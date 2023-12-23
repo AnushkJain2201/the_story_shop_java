@@ -19,6 +19,8 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
         <style>
             .headin {
                 font-family: "Stardom", sans-serif;
@@ -37,10 +39,18 @@
         <div
             class="wrapper md:w-[480px] w-full text-text-gray-800 rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-spacing-2 border-gray-800 mt-5 mb-5">
             <form action="getting_started.do?login=false" method="post" onsubmit="return handleSubmit()">
-                <h1
-                    class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">
-                    SIGN UP
-                </h1>
+                <div class="input-box w-full h-[80px] my-[10px] mx-0 relative text-[20px] mb-12 ">
+                    <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">SIGN UP</h1>
+
+                    <c:if test="${serverErr != null}">
+                        <div class="animate__animated animate__flash animate__infinite animate__slower text-center mt-3">
+                            <span class="text-xs mx-6 border py-2 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 block tracking-wider font-bold visible" id="server_err">
+                                <c:out value="${serverErr}" />
+                            </span>
+                        </div>
+                    </c:if>
+                    
+                </div>
 
                 <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
                     <input type="text" placeholder="Full Name" name="fullname"
@@ -49,7 +59,8 @@
                     <div class="animate__animated animate__flash animate__infinite animate__slower">
                         <span
                             class="text-xs mx-6 border py-1 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 font-medium invisible"
-                            id="fullname_err">Please Fill A Full Name</span>
+                            id="fullname_err">Please Fill A Full Name
+                        </span>
                     </div>
                 </div>
 
@@ -120,6 +131,10 @@
                             An Author
                         </label>
                     </div>
+                </div>
+
+                <div class="w-full h-[80px] my-[5px] mx-0 relative text-[20px] flex justify-center items-center mb-5">
+                    <div class="g-recaptcha" data-sitekey="6LeRqjopAAAAAKFeL_Xi-aWMAn8Bcih2wvgwrRWc"></div>
                 </div>
 
                 <!-- <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
