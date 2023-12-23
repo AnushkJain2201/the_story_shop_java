@@ -19,6 +19,8 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
         <style>
@@ -150,7 +152,7 @@
                 <a href="#" class="text-cyan-300 hover:underline">Forgot Password?</a>
             </div> -->
 
-                <button type="submit"
+                <button type="submit" 
                     class="btn w-full h-11 bg-gray-800 rounded-[40px] shadow-[0 0 10px rgba(0, 0, 0, .1)] cursor-pointer text-[18px] text-white font-semibold headin">
                     Sign Up
                 </button>
