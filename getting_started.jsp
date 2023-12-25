@@ -44,10 +44,10 @@
                 <div class="input-box w-full h-[80px] my-[10px] mx-0 relative text-[20px] mb-12 ">
                     <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">SIGN UP</h1>
 
-                    <c:if test="${serverErr != null}">
+                    <c:if test="${captchaUncheckErr != null}">
                         <div class="animate__animated animate__flash animate__infinite animate__slower text-center mt-3">
                             <span class="text-xs mx-6 border py-2 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 block tracking-wider font-bold visible" id="server_err">
-                                <c:out value="${serverErr}" />
+                                <c:out value="${captchaUncheckErr}" />
                             </span>
                         </div>
                     </c:if>

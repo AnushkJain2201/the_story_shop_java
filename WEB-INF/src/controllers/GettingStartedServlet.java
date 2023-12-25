@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.User;
 import models.Country;
@@ -29,6 +30,7 @@ public class GettingStartedServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
         Boolean login = Boolean.parseBoolean(request.getParameter("login"));
         
         if(login) {
@@ -60,13 +62,14 @@ public class GettingStartedServlet extends HttpServlet {
                 user.setStatus(new Status(2));
 
                 if(user.signUpUser()) {
-
                     EmailSender.sendAccVerificationMail(email, OTP);
+                    session.setAttribute("user", user);
+
                     nextPage = "verify_email.jsp";
                 }
 
             } else {
-                request.setAttribute("serverErr", "Please Check The Captcha");
+                request.setAttribute("captchaUncheckErr", "Please Check The Captcha");
             }
            
             request.getRequestDispatcher(nextPage).forward(request, response);

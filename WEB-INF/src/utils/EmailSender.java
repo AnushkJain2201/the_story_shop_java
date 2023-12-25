@@ -38,10 +38,18 @@ public class EmailSender {
         }
     }
 
+    public static void resendOTPEmail(String email, String OTP) {
+        String resendOTPEmail
+            = "<h1>Welcome to The Story Shop</h1>"+
+            "<br><h2>The resended OTP is <strong>"+ OTP +"</strong></h2>";
+
+        sendEmail(email, "Email Verification", resendOTPEmail);
+    }
+
     public static void sendAccVerificationMail(String email, String OTP) {
         String verificationEmail 
             = "<h1>Welcome to The Story Shop</h1>"+
-            "<br><br><h2>The OTP for your email verification is <strong>"+ OTP +"</strong></h2>";
+            "<br><h2>The OTP for your email verification is <strong>"+ OTP +"</strong></h2>";
         
         sendEmail(email, "Email Verification", verificationEmail);
     }

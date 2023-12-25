@@ -57,6 +57,58 @@ public class User {
         this.hasPremium = hasPremium;
     }
 
+    public boolean updateOTP() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "update users set OTP = ? where email = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, Integer.parseInt(OTP));
+            ps.setString(2, email);
+            
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
+    public boolean verifyEmail(Integer finalOTP) {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "update users set status_id = 1, OTP = NULL where email = ? and OTP = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, email);
+            ps.setInt(2, finalOTP);
+            
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } 
+
+        return flag;
+    }
+
     public static boolean checkDuplicatePhone(String enteredPhone) {
         boolean flag = false;
 
