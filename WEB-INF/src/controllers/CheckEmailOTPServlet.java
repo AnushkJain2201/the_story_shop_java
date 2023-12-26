@@ -30,7 +30,7 @@ public class CheckEmailOTPServlet extends HttpServlet {
         int finalOTP = Integer.parseInt((code1 + code2 + code3 + code4 + code5 + code6));
 
         if(user.verifyEmail(finalOTP)) {
-            nextPage = "explore.jsp";
+            nextPage = "login.jsp";
         }
         else {
             request.setAttribute("emailVerErr", "Wrong OTP!!");
