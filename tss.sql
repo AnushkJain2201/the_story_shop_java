@@ -39,6 +39,8 @@ CREATE TABLE users
     constraint fk_users_status foreign key (status_id) references status (status_id) 
 );
 
+SELECT user_id, name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id;
+
 -- Users End
 
 -- Countries Start

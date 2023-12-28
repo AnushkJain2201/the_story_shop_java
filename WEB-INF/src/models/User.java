@@ -30,6 +30,11 @@ public class User {
 
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User(String name, String email, String password, Country country, String phone, String OTP, Boolean userType) {
         this.name = name;
         this.email = email;
@@ -51,10 +56,51 @@ public class User {
         this.bookAdded = bookAdded;
         this.country = country;
         this.status = status;
-        this.OTP = OTP;
+        this.OTP = OTP;  
         this.bio = bio;
-        this.userType = userType;
+        this.userType = userType; 
         this.hasPremium = hasPremium;
+    }
+
+    public int login() {
+        int statusId = 0;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
+
+            PreparedStatement ps = con.prepareStatement(query); 
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                statusId = rs.getInt(7);
+
+                if(statusId == 1) {
+                    if(spe.checkPassword(password, rs.getString("password"))) {
+                        password = null;
+                        userId = rs.getInt("user_id");
+                        name = rs.getString(2);
+                        phone = rs.getString("phone");
+                        country = new Country(rs.getInt(5), rs.getString(6));
+                        status = new Status(rs.getInt(7), rs.getString(8));
+                        userType = rs.getBoolean("user_type");
+                        hasPremium = rs.getBoolean("has_premium");
+                    }
+                    else {
+                        statusId = -1;
+                    }
+                }
+            }
+            con.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return statusId;
     }
 
     public boolean updateOTP() {

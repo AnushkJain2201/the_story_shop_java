@@ -12,6 +12,17 @@ let flag2 = true;
 let emailField = form["email"];
 let passwordField = form["password"];
 
+// Regex Pattern
+let emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+const checkEmailExist = async(enteredEmail) => {
+    let response = await fetch(`check_duplicate_email.do?enteredEmail=${enteredEmail}`);
+    let result = await response.text();
+
+    return result;
+
+}
+
 const handleSubmit = () => {
     let flagFinal = true;
     
@@ -33,13 +44,24 @@ const handleDataValidation = (e) => {
         if(emailField.value == ""){
             emailErr.classList.replace('invisible', 'visible');
             flag1 = false;
+        } else if(!emailPattern.test(emailField.value)) {
+            emailErr.innerText = "Please Enter A Proper Email!";
+            emailErr.classList.replace('invisible', 'visible');
+            flag1 = false;
+        } else {
+            checkEmailExist(emailField.value).then((data) => {
+                if(data == 'false') {
+                    emailErr.innerText = "Account With This Email Don't Exist!";
+                    emailErr.classList.replace('invisible', 'visible');
+                    flag1 = false;
+                }
+            })
         }
     }
     else if(e.target.name === passwordField.name) {
         if(passwordField.value == ""){
             passwordErr.classList.replace('invisible', 'visible');
-            flag2 = false;
-            
+            flag2 = false;  
         }
     }
 }
@@ -48,6 +70,7 @@ const handleDataValidation = (e) => {
 const handleFocusEvent = (e) => {
     
     if(e.target.name === emailField.name) {
+        emailErr.innerText = "Please Fill An Email"
         emailErr.classList.replace('visible', 'invisible');
         flag1 = true;
     }

@@ -34,8 +34,44 @@ public class GettingStartedServlet extends HttpServlet {
         Boolean login = Boolean.parseBoolean(request.getParameter("login"));
         
         if(login) {
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
 
-            // Match the password in the database
+            User user = new User(email, password);
+
+            int statusId = user.login();
+
+            String nextPage = "login.jsp";
+            boolean flag = false;
+
+            switch(statusId) {
+                case -1:
+                    request.setAttribute("loginErr", "Incorrect Password!");
+                    break;
+                case 0:
+                    request.setAttribute("loginErr", "Account With The Provided Email Do Not Exist!");
+                    break;
+                case 1:
+                    //------ Plan After Login Page
+                    session.setAttribute("user", user);
+                    nextPage = "profile.do";
+                    flag = true;
+                    break;
+                case 2:
+                    request.setAttribute("loginErr", "Your Account Is Unverified!!");
+                    break;
+                case 3:
+                    request.setAttribute("loginErr", "Sorry! Your Account is Blocked!!");
+                    break;
+            }
+
+            if(flag) {
+                response.sendRedirect(nextPage);
+            }
+            else {
+                request.getRequestDispatcher(nextPage).forward(request, response);
+            }
+            
         }
         else {
             String nextPage = "getting_started.jsp";

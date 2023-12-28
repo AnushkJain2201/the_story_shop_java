@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,11 +40,18 @@
     <div
         class="wrapper md:w-[480px] w-full text-text-gray-800 rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-spacing-2 border-gray-800">
         <form action="getting_started.do?login=true" method="post" onsubmit="return handleSubmit()">
-            <h1
-                class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">
-                LOG IN</h1>
+            <div class="input-box w-full h-[80px] my-[10px] mx-0 relative text-[20px] mb-12 ">
+                <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">LOG IN</h1>
 
-
+                <c:if test="${loginErr != null}">
+                    <div class="animate__animated animate__flash animate__infinite animate__slower text-center mt-3">
+                        <span class="text-xs mx-6 border py-2 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 block tracking-wider font-bold visible" id="server_err">
+                            <c:out value="${loginErr}" />
+                        </span>
+                    </div>
+                </c:if>
+                
+            </div>
 
             <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
                 <input type="text" placeholder="Email" name="email"
