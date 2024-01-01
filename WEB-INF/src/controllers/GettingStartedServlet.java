@@ -54,7 +54,7 @@ public class GettingStartedServlet extends HttpServlet {
                 case 1:
                     //------ Plan After Login Page
                     session.setAttribute("user", user);
-                    nextPage = "profile.do";
+                    nextPage = "explore.do";
                     flag = true;
                     break;
                 case 2:
