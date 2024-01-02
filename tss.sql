@@ -392,6 +392,8 @@ CREATE TABLE premiums
     description varchar(500) not null
 );
 
+INSERT into premiums (name, price, time_period, description) values ("BookWonders Elite", 399, 1, "Offer a premium book club membership that provides customers with exclusive benefits such as early access to new releases, members-only discounts, and invitations to author events or book signings. Include a personalized welcome package with a limited edition bookmark, a tote bag featuring the bookstore logo, and perhaps a small discount coupon for the first purchase as a member."), ("PageTurner Pro", 499, 1, "Create a premium service where customers receive personalized reading recommendations based on their preferences, reading history, and favorite genres. This could be facilitated through a dedicated online portal or in-store consultations. Provide a curated book box subscription service as part of the premium offering, delivering a handpicked selection of books to the customer's doorstep on a regular basis."), ("AuthorQuest Deluxe", 699, 1, "Introduce premium packages that include opportunities for customers to meet their favorite authors. This could involve priority access to book signings, exclusive Q&A sessions, or even virtual meetings with authors for remote customers. Package these experiences with signed copies of the author's latest book, limited edition merchandise, and a behind-the-scenes glimpse into the writing process or the author's inspiration.");
+
 -- Premiums End
 
 -- GenreFavourites Start
