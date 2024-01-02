@@ -26,10 +26,10 @@
                 <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
                     <!-- Pricing Card -->
                     <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                        <h3 class="mb-4 text-2xl font-semibold">BookWonders Elite</h3>
-                        <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">Elevate the book club experience with this exclusive membership, offering early access to literary treasures.</p>
+                        <h3 class="mb-4 text-2xl font-semibold">${premiums.get(0).name}</h3>
+                        <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">${premiums.get(0).description}</p>
                         <div class="flex justify-center items-baseline my-8">
-                            <span class="mr-2 text-5xl font-extrabold">&#8377;399</span>
+                            <span class="mr-2 text-5xl font-extrabold">&#8377;${premiums.get(0).price}</span>
                             <span class="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
                         <!-- List -->
@@ -64,10 +64,10 @@
                     </div>
                     <!-- Pricing Card -->
                     <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                        <h3 class="mb-4 text-2xl font-semibold">PageTurner Pro</h3>
-                        <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">A premium package that transports readers to an oasis of stories, complete with personalized book recommendations</p>
+                        <h3 class="mb-4 text-2xl font-semibold">${premiums.get(1).name}</h3>
+                        <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">${premiums.get(1).description}</p>
                         <div class="flex justify-center items-baseline my-8">
-                            <span class="mr-2 text-5xl font-extrabold">&#8377;499</span>
+                            <span class="mr-2 text-5xl font-extrabold">&#8377;${premiums.get(1).price}</span>
                             <span class="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
                         <!-- List -->
@@ -102,10 +102,10 @@
                     </div>
                     <!-- Pricing Card -->
                     <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-                        <h3 class="mb-4 text-2xl font-semibold">AuthorQuest Deluxe</h3>
-                        <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">Dive into the world of literature with this premium pass, providing access to author meet-and-greets, signed copies.</p>
+                        <h3 class="mb-4 text-2xl font-semibold">${premiums.get(2).name}</h3>
+                        <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">${premiums.get(2).description}</p>
                         <div class="flex justify-center items-baseline my-8">
-                            <span class="mr-2 text-5xl font-extrabold">&#8377;699</span>
+                            <span class="mr-2 text-5xl font-extrabold">&#8377;${premiums.get(2).price}</span>
                             <span class="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
                         <!-- List -->

@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 
 import models.Country;
 import models.Genre;
+import models.Premium;
 import utils.AppUtility;
 
 public class AppListenerImpl implements ServletContextListener{
@@ -34,6 +35,11 @@ public class AppListenerImpl implements ServletContextListener{
         ArrayList<Genre> genres = Genre.collectAllGenres();
         context.setAttribute("genres", genres);
         System.out.println("-____Genres Collected____-");
+
+        // Premiums collected and added as attribute in context scope
+        ArrayList<Premium> premiums = Premium.collectAllPremiums();
+        context.setAttribute("premiums", premiums);
+        System.out.println("-____Premiums Collected____-");
 
         // Initializing from email and from email password at AppUtility
         AppUtility.appContext = context;

@@ -1,5 +1,12 @@
 package models;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Premium {
     private Integer premiumId;
     private String name;
@@ -18,6 +25,30 @@ public class Premium {
         this.price = price;
         this.timePeriod = timePeriod;
         this.description = description;
+    }
+
+    public static ArrayList<Premium> collectAllPremiums() {
+        ArrayList<Premium> premiums = new ArrayList<>();
+        
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "select * from premiums";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                premiums.add(new Premium(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5)));
+            }
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return premiums;
     }
 
     public Integer getPremiumId() {
