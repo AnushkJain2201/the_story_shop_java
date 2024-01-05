@@ -10,6 +10,9 @@ const verifyOTPBtn = document.querySelector("#verify_OTP_btn");
 const setPasswordBtn = document.querySelector('#set_new_password_btn');
 
 const successMsg = document.querySelector("#success_msg");
+const errorToast = document.querySelector(".error_toast");
+const errorToastMsg = document.querySelector(".error_toast_msg");
+const modalHeading = document.querySelector(".modal_heading");
 
 let recEmailField = recoveryForm["email"];
 
@@ -127,6 +130,11 @@ const handlePasswordRecovery = () => {
         if(data == 'true') {
             recoveryForm.classList.add('hidden');
             OTPForm.classList.remove('hidden');
+            modalHeading.innerText = "Enter The OTP";
+        } else {
+            errorToast.classList.replace('hidden', "flex");
+            errorToastMsg.innerText = "Please enter a registered email."
+            recEmailField.value = "";
         }
     }) .catch((err) => {
         console.log(err);
@@ -150,6 +158,10 @@ const handleVerifyOTP = () => {
         if(data == 'true') {
             OTPForm.classList.add('hidden');
             newPasswordForm.classList.remove('hidden');
+            modalHeading.innerText = "Enter New Password"
+        } else {
+            errorToast.classList.replace('hidden', 'flex');
+            errorToastMsg.innerText = "The OTP is wrong."
         }
         
     }).catch((err) => {
