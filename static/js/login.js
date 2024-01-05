@@ -1,10 +1,21 @@
 // Getting the form
 const recoveryForm = document.forms[0];
-const form = document.forms[1];
+const OTPForm = document.forms[1];
+const newPasswordForm = document.forms[2];
+const form = document.forms[3];
 
 // For password recovery
 const sendOTPBtn = document.querySelector("#send_otp_btn");
 let recEmailField = recoveryForm["email"];
+const verifyOTPBtn = document.querySelector("#verify_OTP_btn");
+
+// For OTP
+const code1 = OTPForm["code-1"];
+const code2 = OTPForm["code-2"];
+const code3 = OTPForm["code-3"];
+const code4 = OTPForm["code-4"];
+const code5 = OTPForm["code-5"];
+const code6 = OTPForm["code-6"];
 
 // Getting the error span with respect to their input field
 const emailErr = document.querySelector('#email_err');
@@ -95,6 +106,8 @@ passwordField.addEventListener('focus', handleFocusEvent);
 
 
 // Forget Password Scenario 
+
+// Sending email with OTP for password reset
 const sendPasswordRecovery = async (email) => {
     let response = await fetch(`password_recovery.do?email=${email}`);
     let result = await response.text();
@@ -104,7 +117,10 @@ const sendPasswordRecovery = async (email) => {
 
 const handlePasswordRecovery = () => {
     sendPasswordRecovery(recEmailField.value).then((data) => {
-        console.log(data);
+        if(data == 'true') {
+            recoveryForm.classList.add('hidden');
+            OTPForm.classList.remove('hidden');
+        }
     }) .catch((err) => {
         console.log(err);
     })
@@ -113,5 +129,24 @@ const handlePasswordRecovery = () => {
 }
 
 sendOTPBtn.addEventListener('click', handlePasswordRecovery);
+
+// Verifying OTP for password reset
+const sendVerifyOTP = async (code1, code2, code3, code4, code5, code6) => {
+    let response = await fetch(`verify_reset_password_OTP.do?code1=${code1}&code2=${code2}&code3=${code3}&code4=${code4}&code5=${code5}&code6=${code6}`);
+    let result = await response.text();
+
+    return result;
+}
+
+const handleVerifyOTP = () => {
+    sendVerifyOTP(code1.value, code2.value, code3.value, code4.value, code5.value, code6.value).then((data) => {
+        OTPForm.classList.add('hidden');
+        newPasswordForm.classList.remove('hidden');
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
+verifyOTPBtn.addEventListener('click', handleVerifyOTP);
 
 

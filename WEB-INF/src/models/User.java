@@ -30,6 +30,11 @@ public class User {
 
     }
 
+    public User(String email, String OTP, int num) {
+        this.email = email;
+        this.OTP = OTP;
+    }
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;

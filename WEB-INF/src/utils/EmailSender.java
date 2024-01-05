@@ -38,6 +38,15 @@ public class EmailSender {
         }
     }
 
+    public static void sendPasswordRecoveryEmail(String email, String OTP) {
+        String passwordRecoveryEmail = "<h1>Welcome to The Story Shop</h1>"+
+            "<br><h2>The OTP for password recovery is <strong>"+ OTP +"</strong> </h2><br>" + 
+            "<h2>Enter this OTP to change the password</h2>";
+
+        sendEmail(email, "Password Recovery", passwordRecoveryEmail);
+
+    }
+
     public static void resendOTPEmail(String email, String OTP) {
         String resendOTPEmail
             = "<h1>Welcome to The Story Shop</h1>"+

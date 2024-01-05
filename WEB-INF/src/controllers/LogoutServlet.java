@@ -16,7 +16,7 @@ public class LogoutServlet extends HttpServlet {
 
         session.invalidate();
 
-        request.getRequestDispatcher("getting_started.do?login=true").forward(request, response);;
+        request.getRequestDispatcher("getting_started.do?login=true").forward(request, response);
     }
     
 }
