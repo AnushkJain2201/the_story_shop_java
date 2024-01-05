@@ -1,5 +1,10 @@
 // Getting the form
-const form = document.forms[0];
+const recoveryForm = document.forms[0];
+const form = document.forms[1];
+
+// For password recovery
+const sendOTPBtn = document.querySelector("#send_otp_btn");
+let recEmailField = recoveryForm["email"];
 
 // Getting the error span with respect to their input field
 const emailErr = document.querySelector('#email_err');
@@ -87,3 +92,26 @@ passwordField.addEventListener('blur', handleDataValidation);
 // Adding the focus event listener on each input field
 emailField.addEventListener('focus', handleFocusEvent);
 passwordField.addEventListener('focus', handleFocusEvent);
+
+
+// Forget Password Scenario 
+const sendPasswordRecovery = async (email) => {
+    let response = await fetch(`password_recovery.do?email=${email}`);
+    let result = await response.text();
+
+    return result;
+}
+
+const handlePasswordRecovery = () => {
+    sendPasswordRecovery(recEmailField.value).then((data) => {
+        console.log(data);
+    }) .catch((err) => {
+        console.log(err);
+    })
+
+    return true;
+}
+
+sendOTPBtn.addEventListener('click', handlePasswordRecovery);
+
+
