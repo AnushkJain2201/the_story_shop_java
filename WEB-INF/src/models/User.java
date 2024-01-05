@@ -30,6 +30,10 @@ public class User {
 
     }
 
+    public User(String OTP) {
+        this.OTP = OTP;
+    }
+
     public User(String email, String OTP, int num) {
         this.email = email;
         this.OTP = OTP;
@@ -65,6 +69,32 @@ public class User {
         this.bio = bio;
         this.userType = userType; 
         this.hasPremium = hasPremium;
+    }
+
+    public boolean updatePassword() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "update users set password = ? where email = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, spe.encryptPassword(password));
+            ps.setString(2, email);
+            
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
     }
 
     public int login() {
@@ -148,6 +178,7 @@ public class User {
             ps.setInt(2, finalOTP);
             
             int result = ps.executeUpdate();
+            System.out.println("yaha andar tak aa taha hu");
 
             if(result == 1) {
                 flag = true;

@@ -6,8 +6,12 @@ const form = document.forms[3];
 
 // For password recovery
 const sendOTPBtn = document.querySelector("#send_otp_btn");
-let recEmailField = recoveryForm["email"];
 const verifyOTPBtn = document.querySelector("#verify_OTP_btn");
+const setPasswordBtn = document.querySelector('#set_new_password_btn');
+
+const successMsg = document.querySelector("#success_msg");
+
+let recEmailField = recoveryForm["email"];
 
 // For OTP
 const code1 = OTPForm["code-1"];
@@ -16,6 +20,9 @@ const code3 = OTPForm["code-3"];
 const code4 = OTPForm["code-4"];
 const code5 = OTPForm["code-5"];
 const code6 = OTPForm["code-6"];
+
+// For new password
+const newPasswordField = newPasswordForm["password"];
 
 // Getting the error span with respect to their input field
 const emailErr = document.querySelector('#email_err');
@@ -140,8 +147,11 @@ const sendVerifyOTP = async (code1, code2, code3, code4, code5, code6) => {
 
 const handleVerifyOTP = () => {
     sendVerifyOTP(code1.value, code2.value, code3.value, code4.value, code5.value, code6.value).then((data) => {
-        OTPForm.classList.add('hidden');
-        newPasswordForm.classList.remove('hidden');
+        if(data == 'true') {
+            OTPForm.classList.add('hidden');
+            newPasswordForm.classList.remove('hidden');
+        }
+        
     }).catch((err) => {
         console.log(err);
     })
@@ -149,4 +159,33 @@ const handleVerifyOTP = () => {
 
 verifyOTPBtn.addEventListener('click', handleVerifyOTP);
 
+// Saving the new password
+const setNewPassword = async (newPassword) => {
+    let response = await fetch(`set_new_password.do?new_password=${newPassword}`);
+    let result = response.text();
+
+    return result;
+}
+
+const handleSetPassword = () => {
+    setNewPassword(newPasswordField.value).then((data) => {
+        if(data == 'true') {
+            newPasswordForm.classList.add("hidden");
+            successMsg.classList.remove("hidden");
+        }
+        
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
+setPasswordBtn.addEventListener('click', handleSetPassword);
+
+function focusNextInput(el, prevId, nextId) {
+    if (el.value.length === 0) {
+        document.getElementById(prevId).focus();
+    } else {
+        document.getElementById(nextId).focus();
+    }
+}
 
