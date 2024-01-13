@@ -160,16 +160,16 @@
         <ul
             class="md:flex md:items-center z-[1] md:z-auto md:static absolute bg-gray-900 text-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
             <li class="mx-4 my-6 md:my-0">
-                <a href="index.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold">HOME</a>
+                <a href="index.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold text-cyan-500" id="home">HOME</a>
             </li>
             <li class="mx-4 my-6 md:my-0">
-                <a href="premium.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold">PREMIUMS</a>
+                <a href="premium.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="premiums">PREMIUMS</a>
             </li>
             <li class="mx-4 my-6 md:my-0">
-                <a href="explore.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold">EXPLORE</a>
+                <a href="explore.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="explore">EXPLORE</a>
             </li>
             <li class="mx-4 my-6 md:my-0">
-                <a href="#" class="text-xl hover:text-cyan-500 duration-500 font-semibold">CONTACT</a>
+                <a href="#" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="contact">CONTACT</a>
             </li>
 
             <c:choose>
