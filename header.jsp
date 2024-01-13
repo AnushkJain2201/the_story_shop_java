@@ -85,7 +85,7 @@
                             <path
                                 d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                         </svg>
-                        
+
                         <span class="flex-1 ms-3 whitespace-nowrap">Your Orders</span>
                         <span
                             class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
@@ -160,13 +160,16 @@
         <ul
             class="md:flex md:items-center z-[1] md:z-auto md:static absolute bg-gray-900 text-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
             <li class="mx-4 my-6 md:my-0">
-                <a href="index.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold text-cyan-500" id="home">HOME</a>
+                <a href="index.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold text-cyan-500"
+                    id="home">HOME</a>
             </li>
             <li class="mx-4 my-6 md:my-0">
-                <a href="premium.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="premiums">PREMIUMS</a>
+                <a href="premium.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold"
+                    id="premiums">PREMIUMS</a>
             </li>
             <li class="mx-4 my-6 md:my-0">
-                <a href="explore.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="explore">EXPLORE</a>
+                <a href="explore.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold"
+                    id="explore">EXPLORE</a>
             </li>
             <li class="mx-4 my-6 md:my-0">
                 <a href="#" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="contact">CONTACT</a>

@@ -42,16 +42,21 @@
             class="wrapper md:w-[480px] w-full text-text-gray-800 rounded-xl pt-8 pb-8 pr-10 pl-10 h-full bg-indigo-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-spacing-2 border-gray-800 mt-5 mb-5">
             <form action="getting_started.do?login=false" method="post" onsubmit="return handleSubmit()">
                 <div class="input-box w-full h-[80px] my-[10px] mx-0 relative text-[20px] mb-12 ">
-                    <h1 class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">SIGN UP</h1>
+                    <h1
+                        class="text-[50px] text-center font-bold text-white bg-gray-800 rounded-lg headin animate__animated animate__bounceIn animate__slower">
+                        SIGN UP</h1>
 
                     <c:if test="${captchaUncheckErr != null}">
-                        <div class="animate__animated animate__flash animate__infinite animate__slower text-center mt-3">
-                            <span class="text-xs mx-6 border py-2 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 block tracking-wider font-bold visible" id="server_err">
+                        <div
+                            class="animate__animated animate__flash animate__infinite animate__slower text-center mt-3">
+                            <span
+                                class="text-xs mx-6 border py-2 px-1 rounded-md border-red-700 bg-red-400 text-gray-800 block tracking-wider font-bold visible"
+                                id="server_err">
                                 <c:out value="${captchaUncheckErr}" />
                             </span>
                         </div>
                     </c:if>
-                    
+
                 </div>
 
                 <div class="input-box w-full h-[80px] my-[20px] mx-0 relative text-[20px]">
@@ -152,7 +157,7 @@
                 <a href="#" class="text-cyan-300 hover:underline">Forgot Password?</a>
             </div> -->
 
-                <button type="submit" 
+                <button type="submit"
                     class="btn w-full h-11 bg-gray-800 rounded-[40px] shadow-[0 0 10px rgba(0, 0, 0, .1)] cursor-pointer text-[18px] text-white font-semibold headin">
                     Sign Up
                 </button>
