@@ -46,8 +46,19 @@
                             class="flex justify-between items-center space-y-3 flex-col border-gray-700 border-b-2 rounded-sm">
 
                             <a href="#" id="profile_pic">
-                                <img class="w-96 h-96 rounded-full cursor-pointer"
-                                    src="static/media/images/signup/user_default.png" alt="Default avatar">
+                                <c:choose>
+                                    <c:when test="${user.profilePic == null}">
+                                        <img class="w-80 h-w-80 rounded-full cursor-pointer"
+                                            src="static/media/images/signup/user_default.png" alt="Default avatar">
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <img class="w-80 h-w-80 rounded-full cursor-pointer"
+                                            src="show_profile_pic.do" alt="User avatar">
+                                    </c:otherwise>
+                                </c:choose>
+
+                                
                             </a>
 
                             <form action="upload_profile.do" method="POST" enctype="multipart/form-data" class="hidden">

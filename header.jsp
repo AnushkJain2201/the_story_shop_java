@@ -192,7 +192,16 @@
                             data-drawer-target="drawer-right-example"
                             data-drawer-show="drawer-right-example" data-drawer-placement="right"
                             aria-controls="drawer-right-example">
-                            <img class="w-14 h-14 rounded-full ml-3" src="static/media/images/signup/user_default.png" alt="Default avatar">
+
+                            <c:choose>
+                                <c:when test="${user.profilePic == null}">
+                                    <img class="w-14 h-14 rounded-full ml-3" src="static/media/images/signup/user_default.png" alt="Default avatar">
+                                </c:when>
+
+                                <c:otherwise>
+                                    <img class="w-12 h-12 rounded-full ml-3" src="show_profile_pic.do" alt="User avatar">
+                                </c:otherwise>
+                            </c:choose>
                         </a>
                     </div>
                 </c:otherwise>

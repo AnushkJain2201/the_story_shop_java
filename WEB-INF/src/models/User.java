@@ -129,7 +129,7 @@ public class User {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
 
-            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
+            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium, profile_pic from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
 
             PreparedStatement ps = con.prepareStatement(query); 
             ps.setString(1, email);
@@ -149,6 +149,7 @@ public class User {
                         status = new Status(rs.getInt(7), rs.getString(8));
                         userType = rs.getBoolean("user_type");
                         hasPremium = rs.getBoolean("has_premium");
+                        profilePic = rs.getString("profile_pic");
                     }
                     else {
                         statusId = -1;
