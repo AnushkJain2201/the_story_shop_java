@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,17 @@ public class CheckEmailOTPServlet extends HttpServlet {
         int finalOTP = Integer.parseInt((code1 + code2 + code3 + code4 + code5 + code6));
 
         if(user.verifyEmail(finalOTP)) {
+
+            String uploadLocation = getServletContext().getRealPath("/WEB-INF/uploads");
+
+            File userFolder = new File(uploadLocation, user.getEmail());
+            userFolder.mkdir();
+
+            String profileUploadLocation = getServletContext().getRealPath("/WEB-INF/uploads/" + user.getEmail());
+
+            File profileFolder = new File(profileUploadLocation, "profile_pics");
+            profileFolder.mkdir();
+
             nextPage = "login.jsp";
         }
         else {

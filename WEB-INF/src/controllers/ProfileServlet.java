@@ -26,4 +26,8 @@ public class ProfileServlet extends HttpServlet {
 
         request.getRequestDispatcher(nextPage).forward(request, response);
     }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doGet(request, response);
+    }
 }

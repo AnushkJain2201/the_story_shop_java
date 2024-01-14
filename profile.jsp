@@ -44,8 +44,17 @@
                     <div class="bg-gray-900 h-[100vh] rounded-2xl">
                         <div
                             class="flex justify-between items-center space-y-3 flex-col border-gray-700 border-b-2 rounded-sm">
-                            <img class="w-96 h-96 rounded-full cursor-pointer"
-                                src="static/media/images/signup/user_default.png" alt="Default avatar">
+
+                            <a href="#" id="profile_pic">
+                                <img class="w-96 h-96 rounded-full cursor-pointer"
+                                    src="static/media/images/signup/user_default.png" alt="Default avatar">
+                            </a>
+
+                            <form action="upload_profile.do" method="POST" enctype="multipart/form-data" class="hidden">
+                                <input type="file" name="dp" id="pic_inp" class="hidden">
+                                <input type="submit" class="hidden" id="inp_btn">
+                            </form>
+                            
 
                             <c:choose>
                                 <c:when test="${user.userType}">
@@ -138,6 +147,7 @@
             </div>
 
 
+            <script src="static/js/profile.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     </body>
 

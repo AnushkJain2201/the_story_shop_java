@@ -71,6 +71,32 @@ public class User {
         this.hasPremium = hasPremium;
     }
 
+    public boolean saveProfilePic() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "update users set profile_pic=? where email=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, profilePic);
+            ps.setString(2, email);
+            
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
     public boolean updatePassword() {
         boolean flag = false;
 
