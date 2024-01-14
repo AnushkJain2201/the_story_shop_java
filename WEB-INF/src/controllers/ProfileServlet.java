@@ -7,10 +7,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import models.User;
 
 @WebServlet("/profile.do")
 public class ProfileServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+
+        User user = (User)session.getAttribute("user");
+
+        String nextPage = "login.jsp";
+
+        if(user != null)
+            nextPage = "profile.jsp";
+
+
+        request.getRequestDispatcher(nextPage).forward(request, response);
     }
 }
