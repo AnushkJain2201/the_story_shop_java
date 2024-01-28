@@ -71,6 +71,34 @@ public class User {
         this.hasPremium = hasPremium;
     }
 
+    public boolean editProfile() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "update users set name=?, phone=?, bio=? where email=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, name);
+            ps.setString(2, phone);
+            ps.setString(3, bio);
+            ps.setString(4, email);
+            
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
     public boolean saveProfilePic() {
         boolean flag = false;
 
