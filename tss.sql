@@ -409,6 +409,8 @@ CREATE TABLE genre_favourites
     constraint fk_genre_favourites_users foreign key (user_id) references users (user_id)
 );
 
+SELECT g.genre_id, g.name from genre_favourites as gf inner join genre as g where gf.user_id = ? and gf.genre_id = g.genre_id;
+
 -- GenreFavourites End
 
 -- PremiumStatus Start

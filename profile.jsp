@@ -39,18 +39,8 @@
     </head>
 
     <body class="bg-gray-900">
-
-
-
-        <!-- Modal toggle -->
-        <!-- <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            type="button">
-            Toggle modal
-        </button> -->
-
-        <!-- Main modal -->
-        <div id="crud-modal" tabindex="-1" aria-hidden="true"
+        <!-- Edit modal -->
+        <div id="edit-modal" tabindex="-1" aria-hidden="true"
             class="animate__animated animate__backInUp hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
                 <!-- Modal content -->
@@ -62,7 +52,7 @@
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="crud-modal">
+                            data-modal-toggle="edit-modal">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -84,7 +74,8 @@
 
                             <div class="col-span-2">
                                 <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Registered Email</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Registered
+                                    Email</label>
                                 <input type="text" name="email" id="email"
                                     class="bg-gray-600 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     value='<c:out value="${user.email}" />' disabled>
@@ -98,12 +89,15 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     value='<c:out value="${user.phone}" />' required="">
                             </div>
-            
+
                             <div class="col-span-2">
-                                <label for="bio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio</label>
-                                <textarea id="bio" name="bio" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="About You" value="${user.bio}"></textarea>                    
+                                <label for="bio"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio</label>
+                                <textarea id="bio" name="bio" rows="4"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="About You" value="${user.bio}"></textarea>
                             </div>
-                            
+
                         </div>
                         <button type="submit"
                             class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -114,6 +108,63 @@
                 </div>
             </div>
         </div>
+
+        <!-- Genre Modal -->
+        <div id="genre-modal" tabindex="-1" aria-hidden="true"
+            class="animate__animated animate__backInUp hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Add Your Favourite Genre
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white close-btn-b"
+                            data-modal-toggle="genre-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form class="p-4 md:p-5" method="get">
+                        <div class="grid gap-4 mb-4 grid-cols-2">
+                            <div class="col-span-2">
+                                <div class="flex justify-around items-center flex-wrap" id="allGenre">
+
+                                    <c:forEach var="genre" items="${genres}">
+                                        <div
+                                            class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+
+                                            <input id='<c:out value="${genre.genreId}" />' type="checkbox" value='
+                                                <c:out value="${genre.genreId}" />' name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
+                                                focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800
+                                                focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for='<c:out value="${genre.genreId}" />'
+                                                class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                <c:out value="${genre.name}" />
+                                            </label>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button"
+                            class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            id="genre_btn">
+                            <i class="fa-solid fa-pen-to-square mr-3"></i>
+                            Add Genre
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 
         <%@ include file="header.jsp" %>
 
@@ -169,17 +220,17 @@
                                         class="fa-solid fa-envelope mr-2"></i></span>${user.email}</h1>
 
                             <c:if test="${user.bio != null}">
-                                <p class="text-gray-400 text-xl font-thin tracking-wide text-center text-wrap max-h-5 mb-52"><span><i class="fa-solid fa-pen-nib text-gray-400 mr-3"></i></span>${user.bio}</p>
+                                <p
+                                    class="text-gray-400 text-xl font-thin tracking-wide text-center text-wrap max-h-5 mb-52">
+                                    <span><i class="fa-solid fa-pen-nib text-gray-400 mr-3"></i></span>${user.bio}
+                                </p>
                             </c:if>
 
+                            <h1 class="text-gray-400 text-xl font-thin tracking-wide"><span><i
+                                        class="fa-solid fa-earth-asia mr-2"></i></span>${user.country.name}</h1>
 
-                            <div class="flex justify-between items-center w-[55%]">
-                                <h1 class="text-gray-400 text-xl font-thin tracking-wide"><span><i
-                                            class="fa-solid fa-earth-asia mr-2"></i></span>${user.country.name}</h1>
-
-                                <h1 class="text-gray-400 text-xl font-thin tracking-wider"><span><i
-                                            class="fa-solid fa-phone ml-2 mr-2"></i></span>${user.phone}</h1>
-                            </div>
+                            <h1 class="text-gray-400 text-xl font-thin tracking-wider"><span><i
+                                        class="fa-solid fa-phone mr-2 "></i></span>${user.phone}</h1>
 
                             <c:if test="${user.address != null}">
                                 <h1 class="text-gray-400 text-xl font-thin tracking-wider text-center">${user.address}
@@ -189,7 +240,7 @@
                             <h1 class="text-gray-400 text-xl font-thin tracking-wider">${user.hasPremium ? "" : "No
                                 Subscription"}</h1>
 
-                            <button type="button" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                            <button type="button" data-modal-target="edit-modal" data-modal-toggle="edit-modal"
                                 class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-16 py-1 text-center me-2 mb-2">
                                 Edit Profile
                             </button>
@@ -198,8 +249,19 @@
                         </div>
 
                         <c:if test="${!user.userType}">
-                            <div class="flex justify-around items-center space-y-3 mt-6">
-                                <button type="button"
+                            <div class="flex justify-around items-center flex-col space-y-3 mt-6">
+
+                                <c:if test="${userGenre != null}">
+                                    <div class="flex justify-around items-center flex-wrap">
+                                        <c:forEach var="userFGen" items="${userGenre}">
+                                            <span
+                                                class="p-1 mr-2 mb-2 rounded-lg text-sm bg-cyan-600 text-white">${userFGen.name}</span>
+                                        </c:forEach>
+                                    </div>
+                                </c:if>
+
+
+                                <button type="button" data-modal-target="genre-modal" data-modal-toggle="genre-modal"
                                     class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center me-2 mb-2 w-[48%]">
                                     Add Favourite Genre
                                 </button>
@@ -243,6 +305,38 @@
 
             <script src="static/js/profile.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+            <script>
+                const form = document.forms[1];
+                const genreBtn = document.querySelector('#genre_btn');
+                const closeBtn = document.querySelector('.close-btn-b');
+
+                let arr = [];
+
+                genreBtn.addEventListener('click', async () => {
+                    Array.from(form.elements).forEach((input) => {
+                        if (input.checked)
+                            arr.push(input.value);
+
+                    });
+                    let query = arr.join('&genre=');
+
+                    query = '?genre=' + query;
+                    console.log(query);
+
+                    const resp = await fetch('save_genre.do' + query);
+
+                    const result = await resp.text();
+
+                    console.log(result);
+
+                    if (result == 'true') {
+                        closeBtn.click();
+                        document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
+                        window.location.reload();
+                    }
+
+                });
+            </script>
     </body>
 
     </html>
