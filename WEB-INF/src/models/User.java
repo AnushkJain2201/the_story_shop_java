@@ -71,20 +71,46 @@ public class User {
         this.hasPremium = hasPremium;
     }
 
+    public boolean saveBio() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            String query = "update users set bio=? where email=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, bio);
+            ps.setString(2, email);
+            
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+    
+
     public boolean editProfile() {
         boolean flag = false;
 
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
 
-            String query = "update users set name=?, phone=?, bio=? where email=?";
+            String query = "update users set name=?, phone=? where email=?";
 
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setString(1, name);
             ps.setString(2, phone);
-            ps.setString(3, bio);
-            ps.setString(4, email);
+            ps.setString(3, email);
             
             int result = ps.executeUpdate();
 
@@ -157,7 +183,7 @@ public class User {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
 
-            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium, profile_pic from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
+            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium, profile_pic, bio from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
 
             PreparedStatement ps = con.prepareStatement(query); 
             ps.setString(1, email);
@@ -178,6 +204,7 @@ public class User {
                         userType = rs.getBoolean("user_type");
                         hasPremium = rs.getBoolean("has_premium");
                         profilePic = rs.getString("profile_pic");
+                        bio = rs.getString("bio");
                     }
                     else {
                         statusId = -1;

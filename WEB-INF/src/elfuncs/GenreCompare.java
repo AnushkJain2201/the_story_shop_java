@@ -21,14 +21,9 @@ public class GenreCompare {
                     newGenres.add(gen2);
                 }
             }
-
-            System.out.println(newGenres);
-            System.out.println(genreF);
             return newGenres;
 
         } else {
-
-            System.out.println("hi hewkkii");
             return genre;
         }
 

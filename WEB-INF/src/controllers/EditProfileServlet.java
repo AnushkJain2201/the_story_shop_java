@@ -16,7 +16,7 @@ public class EditProfileServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
-        String bio = request.getParameter("bio");
+        // String bio = request.getParameter("bio");
 
         String nextPage = "profile.do";
 
@@ -25,7 +25,7 @@ public class EditProfileServlet extends HttpServlet {
 
         user.setName(name);
         user.setPhone(phone);
-        user.setBio(bio);
+        // user.setBio(bio);
 
         if(!user.editProfile()) {
             request.setAttribute("updateErr", "Some Error Occurred !!");
