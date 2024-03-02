@@ -22,8 +22,6 @@ public class SaveGenreServlet extends HttpServlet {
 
         boolean flag = GenreFavourite.saveFavGenre(user.getUserId(), genres);
 
-        System.out.println(flag);
-
         response.getWriter().print(flag);
     }
 

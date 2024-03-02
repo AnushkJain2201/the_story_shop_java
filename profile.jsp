@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="a" uri="tss" %>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -137,7 +138,7 @@
                             <div class="col-span-2">
                                 <div class="flex justify-around items-center flex-wrap" id="allGenre">
 
-                                    <c:forEach var="genre" items="${genres}">
+                                    <c:forEach var="genre" items="${a:compare(genres, userGenre)}">
                                         <div
                                             class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
 
