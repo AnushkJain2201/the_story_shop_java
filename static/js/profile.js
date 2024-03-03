@@ -6,8 +6,12 @@ const home = document.querySelector('#home');
 const premiums = document.querySelector('#premiums');
 const explore = document.querySelector('#explore');
 const contact = document.querySelector('#contact');
+
 const bioTextarea = document.querySelector('#bio');
 const bioBtn = document.querySelector('#bio-btn');
+
+const editBioTextarea = document.querySelector('#edit-bio');
+const editBioBtn = document.querySelector('#edit-bio-btn');
 
 const sendBio = async() => {
     const response = await fetch(`save_bio.do?bio=${bioTextarea.value}`);
@@ -16,8 +20,25 @@ const sendBio = async() => {
     return result;
 }
 
+const editBio = async() => {
+    console.log(editBioTextarea.value);
+    const response = await fetch(`edit_bio.do?bio=${editBioTextarea.value}`);
+    const result = await response.text();
+
+    return result;
+}
+
+
 bioBtn.addEventListener('click', () => {
     sendBio().then((data) => {
+        if(data == 'true') {
+            window.location.reload();
+        }
+    })
+})
+
+editBioBtn.addEventListener('click', () => {
+    editBio().then((data) => {
         if(data == 'true') {
             window.location.reload();
         }
