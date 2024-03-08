@@ -252,7 +252,9 @@
                                 <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                                     <!-- <label for="bio" class="sr-only">Your comment</label> -->
                                     <textarea id="edit-bio" rows="15"
-                                        class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" required /><c:out value="${user.bio}" /></textarea>
+                                        class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                                        required />
+                                    <c:out value="${user.bio}" /></textarea>
                                 </div>
                                 <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                                     <button type="submit"
@@ -265,6 +267,63 @@
                             </div>
                         </form>
                         <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Genre Modal -->
+            <div id="edit-genre-modal" tabindex="-1" aria-hidden="true"
+                class="animate__animated animate__backInUp hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                Edit Your Favourite Genre
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white close-btn-b"
+                                data-modal-toggle="edit-genre-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <form class="p-4 md:p-5" method="get">
+                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                <div class="col-span-2">
+                                    <div class="flex justify-around items-center flex-wrap" id="allGenre">
+
+                                        <c:forEach var="genreF" items="${userGenre}">
+                                            <div
+                                                class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+
+                                                <input id='<c:out value="${genreF.genreId}" />' type="checkbox" value='
+                                                <c:out value="${genreF.genreId}" />' name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
+                                                focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800
+                                                focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for='<c:out value="${genreF.genreId}" />'
+                                                    class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                    <c:out value="${genreF.name}" />
+                                                </label>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button"
+                                class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                id="edit-genre_btn">
+                                <i class="fa-solid fa-pen-to-square mr-3"></i>
+                                Edit
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -356,13 +415,19 @@
                             <c:if test="${!user.userType}">
                                 <div class="flex justify-around items-center flex-col space-y-3 mt-6">
 
-                                    <c:if test="${userGenre != null}">
+                                    <c:if test="${!userGenre.isEmpty()}">
                                         <div class="flex justify-around items-center flex-wrap">
                                             <c:forEach var="userFGen" items="${userGenre}">
                                                 <span
                                                     class="p-1 mr-2 mb-2 rounded-lg text-sm bg-cyan-600 text-white">${userFGen.name}</span>
                                             </c:forEach>
                                         </div>
+
+                                        <button type="button" data-modal-target="edit-genre-modal"
+                                            data-modal-toggle="edit-genre-modal"
+                                            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center me-2 mb-2 w-[48%]">
+                                            Edit Favourite Genre
+                                        </button>
                                     </c:if>
 
 

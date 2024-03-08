@@ -26,6 +26,37 @@ public class GenreFavourite {
         this.user = user;
     }
 
+    public static boolean editFavGenre(Integer userId, String[] genres) {
+        boolean flag = false;
+
+        String query = "Delete from genre_favourites where (user_id, genre_id) in (";
+        for(String genre: genres) {
+            query = query + "(" + userId + "," + genre + ")," ;
+        }
+
+        query = query.substring(0, query.length() - 1);
+        query = query + ")";
+
+        System.out.print(query);
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            int result = ps.executeUpdate();
+
+            if(result >= 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return flag;
+    }
+
     public static boolean saveFavGenre(Integer userId, String[] genres) {
         boolean flag = false;
 
