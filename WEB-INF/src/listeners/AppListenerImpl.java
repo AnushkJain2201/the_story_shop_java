@@ -53,5 +53,11 @@ public class AppListenerImpl implements ServletContextListener{
     public void contextDestroyed(ServletContext e) {
         System.out.println("-____TSS DESTROYED____-");
     }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent arg0) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'contextDestroyed'");
+    }
     
 }

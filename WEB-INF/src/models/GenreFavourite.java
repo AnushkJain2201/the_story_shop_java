@@ -40,7 +40,7 @@ public class GenreFavourite {
         System.out.print(query);
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
 
             PreparedStatement ps = con.prepareStatement(query);
             
@@ -68,7 +68,7 @@ public class GenreFavourite {
         query = query.substring(0, query.length() - 1);
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
 
             PreparedStatement ps = con.prepareStatement(query);
             
@@ -89,7 +89,7 @@ public class GenreFavourite {
         ArrayList<Genre> userGenre = new ArrayList<>();
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
 
             String query = "SELECT g.genre_id, g.name from genre_favourites as gf inner join genres as g where gf.user_id = ? and gf.genre_id = g.genre_id";
 

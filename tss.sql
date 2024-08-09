@@ -303,7 +303,7 @@ INSERT into status
 CREATE TABLE genres 
 (
     genre_id int not null auto_increment primary key,
-    name char(20) not null
+    name char(200) not null
 );
 
 INSERT into genres

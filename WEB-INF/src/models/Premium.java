@@ -31,7 +31,7 @@ public class Premium {
         ArrayList<Premium> premiums = new ArrayList<>();
         
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
 
             String query = "select * from premiums";
 

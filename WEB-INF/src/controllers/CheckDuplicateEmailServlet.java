@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.User;
 
+
+
 @WebServlet("/check_duplicate_email.do")
 public class CheckDuplicateEmailServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
