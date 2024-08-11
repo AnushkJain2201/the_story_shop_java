@@ -2,6 +2,8 @@ package models;
 
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+
 public class Rental {
     private Integer rentalId;
     private User user;
@@ -10,6 +12,9 @@ public class Rental {
     private Date returnDate;
     private Integer rentalFee;
     private Integer totalPaid;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Rental() {
 

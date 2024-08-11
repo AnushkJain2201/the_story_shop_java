@@ -2,12 +2,17 @@ package models;
 
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+
 public class Order {
     private Integer orderId;
     private User user;
     private Date orderDate;
     private Integer totalAmount;
     private Integer orderQuantity;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Order() {
 

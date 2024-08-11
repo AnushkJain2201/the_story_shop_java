@@ -7,10 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
+
 public class GenreFavourite {
     private Integer genreFavouriteId;
     private Genre genre;
     private User user;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public GenreFavourite() {
 
@@ -40,7 +45,7 @@ public class GenreFavourite {
         System.out.print(query);
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             PreparedStatement ps = con.prepareStatement(query);
             
@@ -68,7 +73,7 @@ public class GenreFavourite {
         query = query.substring(0, query.length() - 1);
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             PreparedStatement ps = con.prepareStatement(query);
             
@@ -89,7 +94,7 @@ public class GenreFavourite {
         ArrayList<Genre> userGenre = new ArrayList<>();
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "SELECT g.genre_id, g.name from genre_favourites as gf inner join genres as g where gf.user_id = ? and gf.genre_id = g.genre_id";
 

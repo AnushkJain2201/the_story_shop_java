@@ -1,11 +1,16 @@
 package models;
 
+import javax.servlet.ServletContext;
+
 public class OrderItem {
     private Integer orderItemId;
     private Order order;
     private Book book;
     private Integer quantity;
     private Integer subtotal;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public OrderItem() {
 

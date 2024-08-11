@@ -1,8 +1,13 @@
 package models;
 
+import javax.servlet.ServletContext;
+
 public class Status {
     private Integer statusId;
     private String status;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Status() {
 

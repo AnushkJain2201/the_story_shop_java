@@ -2,12 +2,17 @@ package models;
 
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+
 public class PremiumStatus {
     private Integer premiumStatusId;
     private Premium premium;
     private User user;
     private Date purchaseDate;
     private Date endingDate;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public PremiumStatus() {
 

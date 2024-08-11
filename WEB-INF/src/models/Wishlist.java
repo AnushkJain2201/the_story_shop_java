@@ -1,9 +1,14 @@
 package models;
 
+import javax.servlet.ServletContext;
+
 public class Wishlist {
     private Integer wishlistId;
     private User user;
     private Book book;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Wishlist() {
 

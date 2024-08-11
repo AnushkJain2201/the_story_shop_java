@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
+
 import org.jasypt.util.password.StrongPasswordEncryptor;
 
 public class User {
@@ -25,6 +27,9 @@ public class User {
     private String bio;
     private Boolean userType;
     private Boolean hasPremium;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public User() {
 
@@ -75,7 +80,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1234");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "update users set bio=? where email=?";
 
@@ -102,7 +107,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "update users set name=?, phone=? where email=?";
 
@@ -129,7 +134,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "update users set profile_pic=? where email=?";
 
@@ -155,7 +160,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "update users set password = ? where email = ?";
 
@@ -181,7 +186,7 @@ public class User {
         int statusId = 0;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium, profile_pic, bio from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
 
@@ -224,7 +229,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "update users set OTP = ? where email = ?";
 
@@ -250,7 +255,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "update users set status_id = 1, OTP = NULL where email = ? and OTP = ?";
 
@@ -277,7 +282,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "select user_id from users where phone = ?";
 
@@ -302,7 +307,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "select user_id from users where email = ?";
 
@@ -327,7 +332,7 @@ public class User {
         boolean flag = false;
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "insert into users (name, email, password, phone, country_id, OTP, status_id, user_type) values (?, ?, ?, ?, ?, ?, ?, ?)";
 

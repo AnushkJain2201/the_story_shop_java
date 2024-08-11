@@ -7,9 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
+
 public class Genre {
     private Integer genreId;
     private String name;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Genre() {
 
@@ -24,7 +29,7 @@ public class Genre {
         ArrayList<Genre> genres = new ArrayList<>();
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "select * from genres";
 

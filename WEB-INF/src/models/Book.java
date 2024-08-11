@@ -2,6 +2,8 @@ package models;
 
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+
 public class Book {
     private Integer bookId;
     private String title;
@@ -16,6 +18,9 @@ public class Book {
     private User user;
     private String bookImg;
     private Integer likes; 
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Book() {
 

@@ -7,12 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
+
 public class Premium {
     private Integer premiumId;
     private String name;
     private Integer price;
     private Integer timePeriod;
     private String description;
+
+    public static ServletContext appContext;
+    public static String conURL;
 
     public Premium() {
 
@@ -31,7 +36,7 @@ public class Premium {
         ArrayList<Premium> premiums = new ArrayList<>();
         
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tss?user=root&password=1522858@Pati");
+            Connection con = DriverManager.getConnection(conURL);
 
             String query = "select * from premiums";
 

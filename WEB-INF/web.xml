@@ -28,6 +28,31 @@
   </description>
 
   <context-param>
+    <param-name>host</param-name>
+    <param-value>localhost</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>port</param-name>
+    <param-value>3306</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>dbName</param-name>
+    <param-value>tss</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>unmSql</param-name>
+    <param-value>root</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>pwdSql</param-name>
+    <param-value>1522858@Pati</param-value>
+  </context-param>
+
+  <context-param>
     <param-name>from_email</param-name>
     <param-value>anushk2201@outlook.com</param-value>
   </context-param>
