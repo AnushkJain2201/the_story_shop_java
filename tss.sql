@@ -1,7 +1,7 @@
 -- Database Start
 -- D
 CREATE DATABASE tss;
-USE DATABASE tss;
+USE tss;
 
 -- Database End
 
@@ -15,36 +15,6 @@ CREATE TABLE admins
     password char(255) not null
 );
 
--- Admins End 
-
--- Users Start
--- D
-CREATE TABLE users
-(
-    user_id int not null auto_increment primary key,
-    name char(50) not null,
-    email char(50) not null unique,
-    password char(255) not null,
-    phone char(10) not null,
-    address char(255) null,
-    profile_pic char(50) null,
-    book_added int not null default 0,
-    country_id int not null,
-    status_id int not null,
-    OTP int null,
-    bio varchar(500) null,
-    user_type bool not null default 0,
-    has_premium bool not null default 0,
-    constraint fk_users_countries foreign key (country_id) references countries (country_id),
-    constraint fk_users_status foreign key (status_id) references status (status_id) 
-);
-
-SELECT user_id, name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id;
-
--- Users End
-
--- Countries Start
--- D
 CREATE TABLE countries
 (
     country_id int not null auto_increment primary key,
@@ -284,6 +254,13 @@ INSERT INTO Countries (name) VALUE ('Zimbabwe');
 
 -- Countries End
 
+-- Admins End 
+
+
+-- Countries Start
+-- D
+
+
 -- Status Start
 -- D
 CREATE TABLE status
@@ -311,6 +288,32 @@ INSERT into genres
 ('Action And Adventure'), ('Classics'), ('Comic And Graphic'), ('Detective And Mystery'), ('Fantasy'), ('Historical Fiction'), ('Horror'), ('Literary Fiction'), ('Romance'), ('Science Fiction'), ('Short Stories'), ('Suspense And Thrillers'), ("Women's Fiction"), ('Biographies'), ('History'), ('Memoir'), ('Poetry'), ('Self-Help'), ('True Crime');
 
 -- Genres End
+
+-- Users Start
+-- D
+CREATE TABLE users
+(
+    user_id int not null auto_increment primary key,
+    name char(50) not null,
+    email char(50) not null unique,
+    password char(255) not null,
+    phone char(10) not null,
+    address char(255) null,
+    profile_pic char(50) null,
+    book_added int not null default 0,
+    country_id int not null,
+    status_id int not null,
+    OTP int null,
+    bio varchar(500) null,
+    user_type bool not null default 0,
+    has_premium bool not null default 0,
+    constraint fk_users_countries foreign key (country_id) references countries (country_id),
+    constraint fk_users_status foreign key (status_id) references status (status_id) 
+);
+
+SELECT user_id, name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id;
+
+-- Users End
 
 -- Books Start
 -- D
