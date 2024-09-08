@@ -12,15 +12,22 @@ import javax.servlet.http.HttpSession;
 
 import models.Genre;
 import models.GenreFavourite;
+import models.PremiumStatus;
 import models.User;
 
 @WebServlet("/profile.do")
 public class ProfileServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-
         User user = (User)session.getAttribute("user");
+        if(user.getHasPremium()) {
+            System.out.println("premium to hai");
+            PremiumStatus premiumStatus = PremiumStatus.getPremiumStatus(user);
+            System.out.println(premiumStatus);
+            session.setAttribute("userPremiumStatus", premiumStatus);
+        }
 
+        System.out.println("Checking");
         GenreFavourite gf = null;
 
         String nextPage = "login.jsp";

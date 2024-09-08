@@ -41,7 +41,58 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         </head>
 
-        <body class="bg-gray-900">
+        <body class="bg-gray-900 relative">
+            <c:if test='${alert.equals("yes")}'>
+                <div class="absolute w-screen flex justify-center items-center">
+                    <div id="toast-message-cta"
+                        class="w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-400"
+                        role="alert">
+                        <div class="flex">
+                            <!-- <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
+                                    alt="Jese Leos image" /> -->
+
+
+                            <c:choose>
+                                <c:when test="${user.profilePic == null}">
+                                    <img class="w-8 h-8 rounded-full cursor-pointer"
+                                        src="static/media/images/signup/user_default.png" alt="Default avatar">
+                                </c:when>
+
+                                <c:otherwise>
+                                    <img class="w-8 h-8 rounded-full cursor-pointer" src="show_profile_pic.do"
+                                        alt="User avatar">
+                                </c:otherwise>
+                            </c:choose>
+
+                            <div class="ms-3 text-sm font-normal">
+                                <span
+                                    class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">${user.name}</span>
+                                <div class="mb-2 text-sm font-normal">Hi
+                                    <c:out value='${user.name.split(" ")[0]}' />, thanks for purchasing
+                                    <c:out value="${userPremiumStatus.premium.name}." />
+                                </div>
+                            </div>
+                            <button type="button"
+                                class="ms-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                                data-dismiss-target="#toast-message-cta" aria-label="Close">
+                                <span class="sr-only">Close</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </c:if>
+
+
+
+
+
+
             <!-- Edit modal -->
             <div id="edit-modal" tabindex="-1" aria-hidden="true"
                 class="animate__animated animate__backInUp hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -339,13 +390,13 @@
                                 <a href="#" id="profile_pic">
                                     <c:choose>
                                         <c:when test="${user.profilePic == null}">
-                                            <img class="w-80 h-w-80 rounded-full cursor-pointer"
+                                            <img class="w-80 h-80 rounded-full cursor-pointer"
                                                 src="static/media/images/signup/user_default.png" alt="Default avatar">
                                         </c:when>
 
                                         <c:otherwise>
-                                            <img class="w-80 h-w-80 rounded-full cursor-pointer"
-                                                src="show_profile_pic.do" alt="User avatar">
+                                            <img class="w-80 h-80 rounded-full cursor-pointer" src="show_profile_pic.do"
+                                                alt="User avatar">
                                         </c:otherwise>
                                     </c:choose>
 
@@ -401,8 +452,21 @@
                                     </h1>
                                 </c:if>
 
-                                <h1 class="text-gray-400 text-xl font-thin tracking-wider">${user.hasPremium ? "" : "No
-                                    Subscription"}</h1>
+                                <c:choose>
+                                    <c:when test="${user.hasPremium}">
+                                        <h1 class="text-gray-400 text-xl font-thin tracking-wider">
+                                            <c:out value="${userPremiumStatus.premium.name}" />
+                                        </h1>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <h1 class="text-gray-400 text-xl font-thin tracking-wider">
+                                            <c:out value="No Subscription" />
+                                        </h1>
+                                    </c:otherwise>
+                                </c:choose>
+
+
 
                                 <button type="button" data-modal-target="edit-modal" data-modal-toggle="edit-modal"
                                     class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-16 py-1 text-center me-2 mb-2">

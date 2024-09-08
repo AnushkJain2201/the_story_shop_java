@@ -23,6 +23,15 @@ public class Premium {
 
     }
 
+    public Premium(Integer premiumId) {
+        this.premiumId = premiumId;
+    }
+
+    public Premium(Integer premiumId, String name) {
+        this.name = name;
+        this.premiumId = premiumId;
+    }
+
     public Premium(Integer premiumId, String name, Integer price, Integer timePeriod, String description) {
 
         this.premiumId = premiumId;

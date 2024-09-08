@@ -360,6 +360,32 @@ public class User {
         return flag;
     }
 
+    public boolean updateHasPremiumStatus() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "update users set has_premium=? where user_id=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setBoolean(1, hasPremium);
+            ps.setInt(2, userId);
+
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
     public Integer getUserId() {
         return userId;
     }
