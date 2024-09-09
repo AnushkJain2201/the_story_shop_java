@@ -173,11 +173,22 @@
                                         class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Buy</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <form action="payment_premiums.do">
-                                        <input type="text" name="premium-id" hidden value="1">
-                                        <button type="submit" class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Buy</button>
-                                    </form>
-                                    
+                                    <c:choose>
+                                        <c:when test="${user.hasPremium}">
+                                            <input type="text" name="premium-id" hidden value="1">
+                                            <button type="button" disabled
+                                                class="text-white bg-blue-600 hover:bg-primary-700 disabled:bg-blue-300 disabled:text-slate-600 cursor-not-allowed focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Already
+                                                have an premium</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form action="payment_premiums.do">
+                                                <input type="text" name="premium-id" hidden value="1">
+                                                <button type="submit"
+                                                    class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Buy</button>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -251,10 +262,21 @@
                                         class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Buy</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <form action="payment_premiums.do">
-                                        <input type="text" name="premium-id" hidden value="2">
-                                        <button type="submit" class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Buy</button>
-                                    </form>
+                                    <c:choose>
+                                        <c:when test="${user.hasPremium}">
+                                            <input type="text" name="premium-id" hidden value="1">
+                                            <button type="button" disabled
+                                                class="text-white bg-blue-600 hover:bg-primary-700 disabled:bg-blue-300 disabled:text-slate-600 cursor-not-allowed focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Already
+                                                have an premium</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form action="payment_premiums.do">
+                                                <input type="text" name="premium-id" hidden value="1">
+                                                <button type="submit"
+                                                    class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Buy</button>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -327,10 +349,21 @@
                                         class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Buy</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <form action="payment_premiums.do">
-                                        <input type="text" name="premium-id" hidden value="3">
-                                        <button type="submit" class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Buy</button>
-                                    </form>
+                                    <c:choose>
+                                        <c:when test="${user.hasPremium}">
+                                            <input type="text" name="premium-id" hidden value="1">
+                                            <button type="button" disabled
+                                                class="text-white bg-blue-600 hover:bg-primary-700 disabled:bg-blue-300 disabled:text-slate-600 cursor-not-allowed focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Already
+                                                have an premium</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form action="payment_premiums.do">
+                                                <input type="text" name="premium-id" hidden value="1">
+                                                <button type="submit"
+                                                    class="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900 w-full">Buy</button>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:otherwise>
                             </c:choose>
                         </div>
