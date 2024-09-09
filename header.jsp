@@ -141,40 +141,88 @@
         </div>
     </div>
 
-
-
-
-
-    <nav class="md:pl-24 md:pr-24 p-6 bg-gray-900 shadow md:flex md:items-center md:justify-between ">
+    <nav class="md:pl-24 md:pr-24 p-6 bg-gray-900 shadow md:flex md:items-center md:justify-between">
+        <!-- <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"> -->
         <div class="flex justify-between items-center">
             <span class="text-2xl font-[Poppins] cursor-pointer font-extrabold">
                 <img class="h-12 inline m-3" src="static/media/logos/logo_white.png" alt="thestoryshop">
-                <!-- <span class="hidden md:inline text-white">The Story Shop</span>  -->
             </span>
 
-            <span class="text-3xl cursor-pointer md:hidden block text-white md:mr-0 mr-2">
+            <!-- <span class="text-3xl cursor-pointer md:hidden block text-white md:mr-0 mr-2">
                 <ion-icon name="menu-outline" onclick="Menu(this)"></ion-icon>
-            </span>
+            </span> -->
+
+            <div class="md:hidden flex justify-center items-center">
+                <c:choose>
+                    <c:when test="${user == null}">
+                        <a href="getting_started.do?login=false">
+                            <button
+                                class="bg-cyan-400 text-xs md:text-lg text-white font-[Poppins] transition-all ease-in duration-500 px-4 md:px-6 py-2 mx-4 hover:bg-cyan-600 rounded font-extrabold">
+                                Get Started
+                            </button>
+                        </a>
+                    </c:when>
+
+                    <c:otherwise>
+                        <!-- drawer init and toggle -->
+                        <div class="text-center">
+                            <a data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example"
+                                data-drawer-placement="right" aria-controls="drawer-right-example">
+
+                                <c:choose>
+                                    <c:when test="${user.profilePic == null}">
+                                        <img class="w-14 h-14 rounded-full ml-3"
+                                            src="static/media/images/signup/user_default.png" alt="Default avatar">
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <img class="w-12 h-12 rounded-full ml-3" src="show_profile_pic.do"
+                                            alt="User avatar">
+                                    </c:otherwise>
+                                </c:choose>
+                            </a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+
+            <button data-collapse-toggle="navbar-user" type="button" name="menu-outline" onclick="Menu(this)"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                aria-controls="navbar-user" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
         </div>
 
-        <ul
-            class="md:flex md:items-center z-[1] md:z-auto md:static absolute bg-gray-900 text-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-            <li class="mx-4 my-6 md:my-0">
-                <a href="index.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold text-cyan-500"
-                    id="home">HOME</a>
-            </li>
-            <li class="mx-4 my-6 md:my-0">
-                <a href="premium.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold"
-                    id="premiums">PREMIUMS</a>
-            </li>
-            <li class="mx-4 my-6 md:my-0">
-                <a href="explore.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold"
-                    id="explore">EXPLORE</a>
-            </li>
-            <li class="mx-4 my-6 md:my-0">
-                <a href="#" class="text-xl hover:text-cyan-500 duration-500 font-semibold" id="contact">CONTACT</a>
-            </li>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+            <ul
+                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                    <a href="index.do"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-cyan-500 md:dark:hover:text-cyan-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" id="home">HOME</a>
+                </li>
+                <li>
+                    <!-- <a href="premium.do" class="text-xl hover:text-cyan-500 duration-500 font-semibold"
+                    id="premiums">PREMIUMS</a> -->
+                    <a href="premium.do"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-cyan-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" id="premiums">PREMIUMS</a>
+                </li>
+                <li>
+                    <a href="explore.do"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-cyan-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" id="explore">EXPLORE</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-cyan-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" id="contact">CONTACT</a>
+                </li>
+            </ul>
+        </div>
 
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-2">
             <c:choose>
                 <c:when test="${user == null}">
                     <a href="getting_started.do?login=false">
@@ -188,28 +236,30 @@
                 <c:otherwise>
                     <!-- drawer init and toggle -->
                     <div class="text-center">
-                        <a
-                            data-drawer-target="drawer-right-example"
-                            data-drawer-show="drawer-right-example" data-drawer-placement="right"
-                            aria-controls="drawer-right-example">
+                        <a data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example"
+                            data-drawer-placement="right" aria-controls="drawer-right-example">
 
                             <c:choose>
                                 <c:when test="${user.profilePic == null}">
-                                    <img class="w-14 h-14 rounded-full ml-3" src="static/media/images/signup/user_default.png" alt="Default avatar">
+                                    <img class="w-14 h-14 rounded-full ml-3"
+                                        src="static/media/images/signup/user_default.png" alt="Default avatar">
                                 </c:when>
 
                                 <c:otherwise>
-                                    <img class="w-12 h-12 rounded-full ml-3" src="show_profile_pic.do" alt="User avatar">
+                                    <img class="w-12 h-12 rounded-full ml-3" src="show_profile_pic.do"
+                                        alt="User avatar">
                                 </c:otherwise>
                             </c:choose>
                         </a>
                     </div>
                 </c:otherwise>
             </c:choose>
+        </div>
 
-
-        </ul>
+        <!-- </div> -->
     </nav>
+
+
 
     <script>
         function Menu(e) {
