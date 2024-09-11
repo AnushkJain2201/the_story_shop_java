@@ -382,189 +382,169 @@
             <%@ include file="header.jsp" %>
 
                 <main class="bg-gray-900 md:px-24 px-8">
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="bg-gray-900 h-[100vh] rounded-2xl">
-                            <div
-                                class="flex justify-between items-center space-y-3 flex-col border-gray-700 border-b-2 rounded-sm">
-
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Left Section (Profile Section) -->
+                        <div class="bg-gray-900 md:h-[100vh] h-auto rounded-2xl">
+                            <div class="flex flex-col justify-between items-center space-y-3 border-gray-700 border-b-2 rounded-sm p-4">
+                    
+                                <!-- Profile Picture -->
                                 <a href="#" id="profile_pic">
                                     <c:choose>
                                         <c:when test="${user.profilePic == null}">
-                                            <img class="w-80 h-80 rounded-full cursor-pointer"
+                                            <img class="w-32 h-32 md:w-80 md:h-80 rounded-full cursor-pointer"
                                                 src="static/media/images/signup/user_default.png" alt="Default avatar">
                                         </c:when>
-
                                         <c:otherwise>
-                                            <img class="w-80 h-80 rounded-full cursor-pointer" src="show_profile_pic.do"
+                                            <img class="w-32 h-32 md:w-80 md:h-80 rounded-full cursor-pointer" src="show_profile_pic.do"
                                                 alt="User avatar">
                                         </c:otherwise>
                                     </c:choose>
-
-
                                 </a>
-
-                                <form action="upload_profile.do" method="POST" enctype="multipart/form-data"
-                                    class="hidden">
+                    
+                                <!-- Upload Profile Picture Form -->
+                                <form action="upload_profile.do" method="POST" enctype="multipart/form-data" class="hidden">
                                     <input type="file" name="dp" id="pic_inp" class="hidden">
                                     <input type="submit" class="hidden" id="inp_btn">
                                 </form>
-
-
+                    
+                                <!-- User Info (Name, Email, Country, Phone) -->
                                 <c:choose>
                                     <c:when test="${user.userType}">
-                                        <h1 class="text-gray-300 text-3xl font-bold tracking-wider">
+                                        <h1 class="text-gray-300 text-2xl md:text-3xl font-bold tracking-wider">
                                             <c:out value="${user.name}" />
-
                                             <span class="material-symbols-outlined">
                                                 verified
                                             </span>
                                         </h1>
                                     </c:when>
-
                                     <c:otherwise>
-                                        <h1 class="text-gray-300 text-3xl font-bold tracking-wider">
+                                        <h1 class="text-gray-300 text-2xl md:text-3xl font-bold tracking-wider">
                                             <c:out value="${user.name}" />
                                         </h1>
                                     </c:otherwise>
                                 </c:choose>
-
-
-
-                                <h1 class="text-gray-400 text-xl font-normal tracking-tighter"><span><i
-                                            class="fa-solid fa-envelope mr-2"></i></span>${user.email}</h1>
-
-                                <!-- <c:if test="${user.bio != null}">
-                                <p
-                                    class="text-gray-400 text-xl font-thin tracking-wide text-center text-wrap max-h-5 mb-52">
-                                    <span><i class="fa-solid fa-pen-nib text-gray-400 mr-3"></i></span>${user.bio}
-                                </p>
-                            </c:if> -->
-
-                                <h1 class="text-gray-400 text-xl font-thin tracking-wide"><span><i
-                                            class="fa-solid fa-earth-asia mr-2"></i></span>${user.country.name}</h1>
-
-                                <h1 class="text-gray-400 text-xl font-thin tracking-wider"><span><i
-                                            class="fa-solid fa-phone mr-2 "></i></span>${user.phone}</h1>
-
+                    
+                                <h1 class="text-gray-400 text-lg md:text-xl font-normal tracking-tighter">
+                                    <span><i class="fa-solid fa-envelope mr-2"></i></span>${user.email}
+                                </h1>
+                    
+                                <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wide">
+                                    <span><i class="fa-solid fa-earth-asia mr-2"></i></span>${user.country.name}
+                                </h1>
+                    
+                                <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wider">
+                                    <span><i class="fa-solid fa-phone mr-2"></i></span>${user.phone}
+                                </h1>
+                    
                                 <c:if test="${user.address != null}">
-                                    <h1 class="text-gray-400 text-xl font-thin tracking-wider text-center">
+                                    <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wider text-center">
                                         ${user.address}
                                     </h1>
                                 </c:if>
-
+                    
+                                <!-- User Subscription Info -->
                                 <c:choose>
                                     <c:when test="${user.hasPremium}">
-                                        <h1 class="text-gray-400 text-xl font-thin tracking-wider">
+                                        <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wider">
                                             <c:out value="${userPremiumStatus.premium.name}" />
                                         </h1>
                                     </c:when>
-
                                     <c:otherwise>
-                                        <h1 class="text-gray-400 text-xl font-thin tracking-wider">
+                                        <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wider">
                                             <c:out value="No Subscription" />
                                         </h1>
                                     </c:otherwise>
                                 </c:choose>
-
-
-
+                    
+                                <!-- Edit Profile Button -->
                                 <button type="button" data-modal-target="edit-modal" data-modal-toggle="edit-modal"
-                                    class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-16 py-1 text-center me-2 mb-2">
+                                    class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm md:px-16 px-10 py-1 text-center me-2 mb-2">
                                     Edit Profile
                                 </button>
-
-                                <br>
+                    
                             </div>
-
+                    
+                            <!-- Favorite Genre Section (Only for non-premium users) -->
                             <c:if test="${!user.userType}">
-                                <div class="flex justify-around items-center flex-col space-y-3 mt-6">
-
+                                <div class="flex flex-col justify-around items-center space-y-3 mt-6 px-4">
+                    
                                     <c:if test="${!userGenre.isEmpty()}">
-                                        <div class="flex justify-around items-center flex-wrap">
+                                        <div class="flex flex-wrap justify-around items-center">
                                             <c:forEach var="userFGen" items="${userGenre}">
-                                                <span
-                                                    class="p-1 mr-2 mb-2 rounded-lg text-sm bg-cyan-600 text-white">${userFGen.name}</span>
+                                                <span class="p-1 mr-2 mb-2 rounded-lg text-sm bg-cyan-600 text-white">
+                                                    ${userFGen.name}
+                                                </span>
                                             </c:forEach>
                                         </div>
-
-                                        <button type="button" data-modal-target="edit-genre-modal"
-                                            data-modal-toggle="edit-genre-modal"
-                                            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center me-2 mb-2 w-[48%]">
+                    
+                                        <button type="button" data-modal-target="edit-genre-modal" data-modal-toggle="edit-genre-modal"
+                                            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                             Edit Favourite Genre
                                         </button>
                                     </c:if>
-
-
-                                    <button type="button" data-modal-target="genre-modal"
-                                        data-modal-toggle="genre-modal"
-                                        class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center me-2 mb-2 w-[48%]">
+                    
+                                    <button type="button" data-modal-target="genre-modal" data-modal-toggle="genre-modal"
+                                        class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                         Add Favourite Genre
                                     </button>
                                 </div>
                             </c:if>
-
+                    
+                            <!-- User Bio Section (For premium users) -->
                             <c:if test="${user.userType}">
-                                <div class="flex justify-around items-center flex-col space-y-3 mt-6">
+                                <div class="flex flex-col justify-around items-center space-y-3 mt-6 px-4">
                                     <c:choose>
                                         <c:when test="${user.bio != null}">
-                                            <div
-                                                class="w-full bg-cyan-600 rounded-lg scroll-smooth h-64 overflow-y-scroll text-wrap overflow-x-hidden">
+                                            <div class="w-full bg-cyan-600 rounded-lg h-40 md:h-64 overflow-y-scroll text-wrap overflow-x-hidden">
                                                 <p class="text-center p-2 text-white">
                                                     <c:out value="${user.bio}" />
                                                 </p>
                                             </div>
-
-                                            <button type="button" data-modal-target="edit-bio-modal"
-                                                data-modal-toggle="edit-bio-modal"
-                                                class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center me-2 mb-2 w-[48%]">
+                    
+                                            <button type="button" data-modal-target="edit-bio-modal" data-modal-toggle="edit-bio-modal"
+                                                class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                                 Edit About Yourself
                                             </button>
-
+                    
                                         </c:when>
-
+                    
                                         <c:otherwise>
-                                            <button type="button" data-modal-target="bio-modal"
-                                                data-modal-toggle="bio-modal"
-                                                class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center me-2 mb-2 w-[48%]">
+                                            <button type="button" data-modal-target="bio-modal" data-modal-toggle="bio-modal"
+                                                class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                                 Add About Yourself
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
-
-
                                 </div>
                             </c:if>
-
-
+                    
                         </div>
-
-                        <div
-                            class="bg-gray-900 h-[1080px] col-span-2 border border-gray-700 rounded-2xl pt-5 pr-5 pl-5 pb-3">
-                            <div class="h-[100%]">
-                                <div
-                                    class="h-[58%] rounded-lg mb-7 border border-gray-700 flex justify-around items-center">
-                                    <div class="flex justify-around items-center flex-col h-[20%]">
-                                        <h1 class="text-3xl font-bold text-gray-300"><span><i
-                                                    class="fa-solid fa-book mr-5"></i></span>No Books Added !!</h1>
-
-                                        <button type="button"
-                                            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-10 py-2.5 text-center me-2 mb-2">
-                                            Add Book
-                                        </button>
-                                    </div>
+                    
+                        <!-- Right Section (Books and Notifications Section) -->
+                        <div class="bg-gray-900 h-auto col-span-2 border border-gray-700 rounded-2xl pt-5 pr-5 pl-5 pb-3">
+                            <div class="flex flex-col h-full space-y-7">
+                    
+                                <!-- Books Section -->
+                                <div class="h-auto md:h-[58%] rounded-lg border border-gray-700 flex flex-col justify-center items-center">
+                                    <h1 class="text-2xl md:text-3xl font-bold text-gray-300 mb-5">
+                                        <span><i class="fa-solid fa-book mr-5"></i></span>No Books Added !!
+                                    </h1>
+                                    <button type="button"
+                                        class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-10 py-2.5 text-center me-2 mb-2">
+                                        Add Book
+                                    </button>
                                 </div>
-                                <div class="h-[38%] rounded-lg border border-gray-700 flex justify-around items-center">
-                                    <div class="flex justify-around items-center flex-col h-[20%]">
-                                        <h1 class="text-3xl font-bold text-gray-300"><span><i
-                                                    class="fa-solid fa-circle-exclamation mr-5"></i></span>No
-                                            Notifications
-                                            !!</h1>
-                                    </div>
+                    
+                                <!-- Notifications Section -->
+                                <div class="h-[60%] md:h-[38%] rounded-lg border border-gray-700 flex justify-center items-center">
+                                    <h1 class="text-2xl md:text-3xl font-bold text-gray-300">
+                                        <span><i class="fa-solid fa-circle-exclamation mr-5"></i></span>No Notifications !!
+                                    </h1>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                    
 
                 </main>
 
