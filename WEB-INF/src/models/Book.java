@@ -1,6 +1,10 @@
 package models;
 
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 
@@ -144,6 +148,70 @@ public class Book {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public boolean saveOnSaleBook() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "insert into books (title, author, genre_id, price, available_copies, publish_date, description, user_id, book_img) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, title);
+            ps.setString(2, author);
+            ps.setInt(3, genre.getGenreId());
+            ps.setInt(4, price);
+            ps.setInt(5, availableCopies);
+            ps.setDate(6, publishDate);
+            ps.setString(7, description);
+            ps.setInt(8, user.getUserId());
+            ps.setString(9, bookImg);
+
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
+    public boolean saveOnRentBook() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "insert into books (title, author, genre_id, price, description, user_id, book_img) values (?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, title);
+            ps.setString(2, author);
+            ps.setInt(3, genre.getGenreId());
+            ps.setInt(4, price);
+            ps.setString(5, description);
+            ps.setInt(6, user.getUserId());
+            ps.setString(7, bookImg);
+
+            int result = ps.executeUpdate();
+
+            if(result == 1) {
+                flag = true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
     }
 
 }

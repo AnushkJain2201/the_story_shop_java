@@ -336,6 +336,10 @@ CREATE TABLE books
     constraint fk_books_users foreign key (user_id) references users (user_id)
 );
 
+alter table books drop date;
+alter table books add column date datetime default CURRENT_TIMESTAMP;
+alter table books drop total_copies;
+
 -- Books End
 
 -- Orders Start

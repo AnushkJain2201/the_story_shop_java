@@ -88,11 +88,6 @@
                 </div>
             </c:if>
 
-
-
-
-
-
             <!-- Edit modal -->
             <div id="edit-modal" tabindex="-1" aria-hidden="true"
                 class="animate__animated animate__backInUp hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -379,14 +374,157 @@
                 </div>
             </div>
 
+            <!-- Book for rent modal -->
+            <div id="book-to-add-modal" tabindex="-1" aria-hidden="true"
+                class="animate__animated animate__backInUp hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                Add New Book
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-toggle="book-to-add-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <form class="p-4 md:p-5" action="add_book.do" method="post" enctype="multipart/form-data">
+                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                <!-- <div class="col-span-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 text-center">
+                                    <label for="book-image"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Image</label>
+                                    <i class="fa-solid fa-square-plus text-center text-3xl"></i>
+                                </div> -->
+                                <div class="col-span-2">
+                                    <!-- <label for="img"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Image</label>
+                                    <input type="file" name="img" id="img"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required=""> -->
+
+                                    <div class="flex items-center justify-center w-full">
+                                        <label for="dropzone-file"
+                                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
+                                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 20 16">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                                </svg>
+                                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                                        class="font-semibold">Click to upload</span> or drag and drop
+                                                </p>
+                                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF
+                                                    (MAX. 800x400px)</p>
+                                            </div>
+                                            <input id="dropzone-file" type="file" name="book-img" class="hidden" />
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="title"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                    <input type="text" name="title" id="title"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="Type book name" required="">
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="price"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                    <input type="number" name="price" id="price"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        placeholder="&#8377;200" required="">
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="genre"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
+                                    <select id="genre"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" name="genre">
+                                        <option selected="">Select genre</option>
+                                        <c:forEach var="genre" items="${genres}">
+                                            <option value="${genre.genreId}">
+                                                <c:out value="${genre.name}" />
+                                            </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+                                <c:if test="${!user.userType}">
+                                    <div class="col-span-2">
+                                        <label for="author"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author
+                                            Name</label>
+                                        <input type="text" name="author" id="author"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Type author name" required="">
+                                    </div>
+                                </c:if>
+
+                                <c:if test="${user.userType}">
+                                    <div class="col-span-2">
+                                        <label for="available-copies"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Copies</label>
+                                        <input type="number" name="available-copies" id="available-copies"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="500" required="">
+                                    </div>
+                                </c:if>
+
+                                <c:if test="${user.userType}">
+                                    <div class="col-span-2">
+                                        <label for="publish-date"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Publication Date</label>
+                                        <input type="date" name="publish-date" id="publish-date"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                                    </div>
+                                </c:if>
+
+                                <div class="col-span-2">
+                                    <label for="description"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book
+                                        Description</label>
+                                    <textarea id="description" rows="4" name="description"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Write book description here"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Add new book
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
             <%@ include file="header.jsp" %>
 
                 <main class="bg-gray-900 md:px-24 px-8">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <!-- Left Section (Profile Section) -->
                         <div class="bg-gray-900 md:h-[100vh] h-auto rounded-2xl">
-                            <div class="flex flex-col justify-between items-center space-y-3 border-gray-700 border-b-2 rounded-sm p-4">
-                    
+                            <div
+                                class="flex flex-col justify-between items-center space-y-3 border-gray-700 border-b-2 rounded-sm p-4">
+
                                 <!-- Profile Picture -->
                                 <a href="#" id="profile_pic">
                                     <c:choose>
@@ -395,18 +533,19 @@
                                                 src="static/media/images/signup/user_default.png" alt="Default avatar">
                                         </c:when>
                                         <c:otherwise>
-                                            <img class="w-32 h-32 md:w-80 md:h-80 rounded-full cursor-pointer" src="show_profile_pic.do"
-                                                alt="User avatar">
+                                            <img class="w-32 h-32 md:w-80 md:h-80 rounded-full cursor-pointer"
+                                                src="show_profile_pic.do" alt="User avatar">
                                         </c:otherwise>
                                     </c:choose>
                                 </a>
-                    
+
                                 <!-- Upload Profile Picture Form -->
-                                <form action="upload_profile.do" method="POST" enctype="multipart/form-data" class="hidden">
+                                <form action="upload_profile.do" method="POST" enctype="multipart/form-data"
+                                    class="hidden">
                                     <input type="file" name="dp" id="pic_inp" class="hidden">
                                     <input type="submit" class="hidden" id="inp_btn">
                                 </form>
-                    
+
                                 <!-- User Info (Name, Email, Country, Phone) -->
                                 <c:choose>
                                     <c:when test="${user.userType}">
@@ -423,25 +562,25 @@
                                         </h1>
                                     </c:otherwise>
                                 </c:choose>
-                    
+
                                 <h1 class="text-gray-400 text-lg md:text-xl font-normal tracking-tighter">
                                     <span><i class="fa-solid fa-envelope mr-2"></i></span>${user.email}
                                 </h1>
-                    
+
                                 <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wide">
                                     <span><i class="fa-solid fa-earth-asia mr-2"></i></span>${user.country.name}
                                 </h1>
-                    
+
                                 <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wider">
                                     <span><i class="fa-solid fa-phone mr-2"></i></span>${user.phone}
                                 </h1>
-                    
+
                                 <c:if test="${user.address != null}">
                                     <h1 class="text-gray-400 text-lg md:text-xl font-thin tracking-wider text-center">
                                         ${user.address}
                                     </h1>
                                 </c:if>
-                    
+
                                 <!-- User Subscription Info -->
                                 <c:choose>
                                     <c:when test="${user.hasPremium}">
@@ -455,19 +594,19 @@
                                         </h1>
                                     </c:otherwise>
                                 </c:choose>
-                    
+
                                 <!-- Edit Profile Button -->
                                 <button type="button" data-modal-target="edit-modal" data-modal-toggle="edit-modal"
                                     class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm md:px-16 px-10 py-1 text-center me-2 mb-2">
                                     Edit Profile
                                 </button>
-                    
+
                             </div>
-                    
+
                             <!-- Favorite Genre Section (Only for non-premium users) -->
                             <c:if test="${!user.userType}">
                                 <div class="flex flex-col justify-around items-center space-y-3 mt-6 px-4">
-                    
+
                                     <c:if test="${!userGenre.isEmpty()}">
                                         <div class="flex flex-wrap justify-around items-center">
                                             <c:forEach var="userFGen" items="${userGenre}">
@@ -476,40 +615,45 @@
                                                 </span>
                                             </c:forEach>
                                         </div>
-                    
-                                        <button type="button" data-modal-target="edit-genre-modal" data-modal-toggle="edit-genre-modal"
+
+                                        <button type="button" data-modal-target="edit-genre-modal"
+                                            data-modal-toggle="edit-genre-modal"
                                             class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                             Edit Favourite Genre
                                         </button>
                                     </c:if>
-                    
-                                    <button type="button" data-modal-target="genre-modal" data-modal-toggle="genre-modal"
+
+                                    <button type="button" data-modal-target="genre-modal"
+                                        data-modal-toggle="genre-modal"
                                         class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                         Add Favourite Genre
                                     </button>
                                 </div>
                             </c:if>
-                    
+
                             <!-- User Bio Section (For premium users) -->
                             <c:if test="${user.userType}">
                                 <div class="flex flex-col justify-around items-center space-y-3 mt-6 px-4">
                                     <c:choose>
                                         <c:when test="${user.bio != null}">
-                                            <div class="w-full bg-cyan-600 rounded-lg h-40 md:h-64 overflow-y-scroll text-wrap overflow-x-hidden">
+                                            <div
+                                                class="w-full bg-cyan-600 rounded-lg h-40 md:h-64 overflow-y-scroll text-wrap overflow-x-hidden">
                                                 <p class="text-center p-2 text-white">
                                                     <c:out value="${user.bio}" />
                                                 </p>
                                             </div>
-                    
-                                            <button type="button" data-modal-target="edit-bio-modal" data-modal-toggle="edit-bio-modal"
+
+                                            <button type="button" data-modal-target="edit-bio-modal"
+                                                data-modal-toggle="edit-bio-modal"
                                                 class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                                 Edit About Yourself
                                             </button>
-                    
+
                                         </c:when>
-                    
+
                                         <c:otherwise>
-                                            <button type="button" data-modal-target="bio-modal" data-modal-toggle="bio-modal"
+                                            <button type="button" data-modal-target="bio-modal"
+                                                data-modal-toggle="bio-modal"
                                                 class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-16 py-1 text-center mb-2 w-[90%]">
                                                 Add About Yourself
                                             </button>
@@ -517,34 +661,39 @@
                                     </c:choose>
                                 </div>
                             </c:if>
-                    
+
                         </div>
-                    
+
                         <!-- Right Section (Books and Notifications Section) -->
-                        <div class="bg-gray-900 h-auto col-span-2 border border-gray-700 rounded-2xl pt-5 pr-5 pl-5 pb-3">
+                        <div
+                            class="bg-gray-900 h-auto col-span-2 border border-gray-700 rounded-2xl pt-5 pr-5 pl-5 pb-3">
                             <div class="flex flex-col h-full space-y-7">
-                    
+
                                 <!-- Books Section -->
-                                <div class="h-auto md:h-[58%] rounded-lg border border-gray-700 flex flex-col justify-center items-center">
+                                <div
+                                    class="h-auto md:h-[58%] rounded-lg border border-gray-700 flex flex-col justify-center items-center py-4 md:py-0">
                                     <h1 class="text-2xl md:text-3xl font-bold text-gray-300 mb-5">
                                         <span><i class="fa-solid fa-book mr-5"></i></span>No Books Added !!
                                     </h1>
-                                    <button type="button"
+                                    <button type="button" data-modal-target="book-to-add-modal"
+                                        data-modal-toggle="book-to-add-modal"
                                         class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-10 py-2.5 text-center me-2 mb-2">
                                         Add Book
                                     </button>
                                 </div>
-                    
+
                                 <!-- Notifications Section -->
-                                <div class="h-[60%] md:h-[38%] rounded-lg border border-gray-700 flex justify-center items-center">
+                                <div
+                                    class="h-[60%] md:h-[38%] rounded-lg border border-gray-700 flex justify-center items-center py-4 md:py-0">
                                     <h1 class="text-2xl md:text-3xl font-bold text-gray-300">
-                                        <span><i class="fa-solid fa-circle-exclamation mr-5"></i></span>No Notifications !!
+                                        <span><i class="fa-solid fa-circle-exclamation mr-5"></i></span>No Notifications
+                                        !!
                                     </h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </main>
 

@@ -25,7 +25,6 @@ public class UploadProfilePicServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         User user = (User)session.getAttribute("user");
-        System.out.println(user.getEmail());
 
         if(ServletFileUpload.isMultipartContent(request)) {
             ServletContext context = getServletContext();
