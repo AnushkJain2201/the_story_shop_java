@@ -23,7 +23,7 @@ public class Book {
     private Date date;
     private User user;
     private String bookImg;
-    private Integer likes; 
+    private Integer likes;
 
     public static ServletContext appContext;
     public static String conURL;
@@ -32,7 +32,36 @@ public class Book {
 
     }
 
-    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies, Date publishDate, String description, User user, String bookImg) {
+    // Book(bookId, title, author, new Genre(genreId, name), price, description, new User(userId, name, email), bookImg, likes)
+
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, String description, User user, String bookImg, Integer likes) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.price = price;
+        this.description = description;
+        this.user = user;
+        this.bookImg = bookImg;
+        this.likes = likes;
+    }
+
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies, Date publishDate, String description, User user, String bookImg, Integer likes) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.price = price;
+        this.availableCopies = availableCopies;
+        this.publishDate = publishDate;
+        this.description = description;
+        this.user = user;
+        this.bookImg = bookImg;
+        this.likes = likes;
+    }
+
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies,
+            Date publishDate, String description, User user, String bookImg) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -45,7 +74,9 @@ public class Book {
         this.bookImg = bookImg;
     }
 
-    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies, Integer totalCopies, Date publishDate, String description, Date date, User user, String bookImg, Integer likes) {
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies,
+            Integer totalCopies, Date publishDate, String description, Date date, User user, String bookImg,
+            Integer likes) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -165,6 +196,56 @@ public class Book {
         this.likes = likes;
     }
 
+    public static ArrayList<Book> collectSaleBooks() {
+        ArrayList<Book> saleBooks = new ArrayList<>();
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "select book_id, title, author, b.genre_id, g.name, price, available_copies, publish_date, description, b.user_id, book_img, likes, u.name, email from books as b inner join users as u inner join genres as g where u.user_id=b.user_id and b.genre_id=g.genre_id and u.user_type=1 and available_copies > 0";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getInt(7), rs.getDate(8), rs.getString(9), new User(rs.getInt(10), rs.getString(13), rs.getString(14)), rs.getString(11), rs.getInt(12));
+
+                saleBooks.add(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return saleBooks;
+    }
+
+    public static ArrayList<Book> collectRentalBooks() {
+        ArrayList<Book> rentalBooks = new ArrayList<>();
+
+        // Book(bookId, title, author, new Genre(genreId, name), price, description, new User(userId, name, email), bookImg, likes)
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "select book_id, title, author, b.genre_id, g.name, price, description, b.user_id, book_img, likes, u.name, email from books as b inner join users as u inner join genres as g where u.user_id=b.user_id and b.genre_id=g.genre_id and u.user_type=0";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getString(7), new User(rs.getInt(8), rs.getString(11), rs.getString(12)), rs.getString(9), rs.getInt(10));
+
+                rentalBooks.add(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rentalBooks;
+    }
+
     public static ArrayList<Book> getAllBooks(User user) {
         ArrayList<Book> books = new ArrayList<>();
 
@@ -180,11 +261,13 @@ public class Book {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getInt(7), rs.getDate(8), rs.getString(9), user, rs.getString(10));
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getInt(7), rs.getDate(8),
+                        rs.getString(9), user, rs.getString(10));
 
                 books.add(book);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -213,11 +296,11 @@ public class Book {
 
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -244,11 +327,11 @@ public class Book {
 
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

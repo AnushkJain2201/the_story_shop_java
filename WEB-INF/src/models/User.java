@@ -39,6 +39,14 @@ public class User {
         this.OTP = OTP;
     }
 
+    //Book(bookId, title, author, new Genre(genreId, name), price, availableCopies, publishDate, description, new User(userId, name, email), bookImg, likes)
+
+    public User(Integer userId, String name, String email) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+    }
+
     public User(String email, String OTP, int num) {
         this.email = email;
         this.OTP = OTP;
