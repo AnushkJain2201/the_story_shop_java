@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.Book;
 import models.Genre;
 import models.GenreFavourite;
 import models.PremiumStatus;
@@ -20,6 +21,15 @@ public class ProfileServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
+        if(user.getBookAdded() > 0) {
+            ArrayList<Book> books = Book.getAllBooks(user);
+            for(Book book : books) {
+                System.out.println(book.getTitle() + " -------------------------------------------------");
+            }
+            System.out.println("Haa andar to aa gye hai re baba");
+            session.setAttribute("books", books);
+        }
+
         if(user.getHasPremium()) {
             System.out.println("premium to hai");
             PremiumStatus premiumStatus = PremiumStatus.getPremiumStatus(user);

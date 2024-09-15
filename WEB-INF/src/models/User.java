@@ -49,7 +49,8 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String email, String password, Country country, String phone, String OTP, Boolean userType) {
+    public User(String name, String email, String password, Country country, String phone, String OTP,
+            Boolean userType) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -59,7 +60,9 @@ public class User {
         this.userType = userType;
     }
 
-    public User(Integer userId, String name, String email, String password, String phone, String address, String profilePic, Integer bookAdded, Country country, Status status, String OTP, String bio, Boolean userType, Boolean hasPremium) {
+    public User(Integer userId, String name, String email, String password, String phone, String address,
+            String profilePic, Integer bookAdded, Country country, Status status, String OTP, String bio,
+            Boolean userType, Boolean hasPremium) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -70,9 +73,9 @@ public class User {
         this.bookAdded = bookAdded;
         this.country = country;
         this.status = status;
-        this.OTP = OTP;  
+        this.OTP = OTP;
         this.bio = bio;
-        this.userType = userType; 
+        this.userType = userType;
         this.hasPremium = hasPremium;
     }
 
@@ -88,20 +91,19 @@ public class User {
 
             ps.setString(1, bio);
             ps.setString(2, email);
-            
+
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return flag;
     }
-    
 
     public boolean editProfile() {
         boolean flag = false;
@@ -116,14 +118,14 @@ public class User {
             ps.setString(1, name);
             ps.setString(2, phone);
             ps.setString(3, email);
-            
+
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -142,14 +144,14 @@ public class User {
 
             ps.setString(1, profilePic);
             ps.setString(2, email);
-            
+
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -168,14 +170,14 @@ public class User {
 
             ps.setString(1, spe.encryptPassword(password));
             ps.setString(2, email);
-            
+
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -188,18 +190,18 @@ public class User {
         try {
             Connection con = DriverManager.getConnection(conURL);
 
-            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium, profile_pic, bio from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
+            String query = "select user_id, u.name, password, phone, c.country_id, c.name, s.status_id, s.name, user_type, has_premium, profile_pic, bio, book_added from users as u inner join countries as c inner join status as s where email = ? and u.country_id = c.country_id and u.status_id = s.status_id";
 
-            PreparedStatement ps = con.prepareStatement(query); 
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, email);
 
             ResultSet rs = ps.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 statusId = rs.getInt(7);
 
-                if(statusId == 1) {
-                    if(spe.checkPassword(password, rs.getString("password"))) {
+                if (statusId == 1) {
+                    if (spe.checkPassword(password, rs.getString("password"))) {
                         password = null;
                         userId = rs.getInt("user_id");
                         name = rs.getString(2);
@@ -210,15 +212,15 @@ public class User {
                         hasPremium = rs.getBoolean("has_premium");
                         profilePic = rs.getString("profile_pic");
                         bio = rs.getString("bio");
-                    }
-                    else {
+                        bookAdded = rs.getInt("book_added");
+                    } else {
                         statusId = -1;
                     }
                 }
             }
             con.close();
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -237,14 +239,14 @@ public class User {
 
             ps.setInt(1, Integer.parseInt(OTP));
             ps.setString(2, email);
-            
+
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -263,17 +265,17 @@ public class User {
 
             ps.setString(1, email);
             ps.setInt(2, finalOTP);
-            
+
             int result = ps.executeUpdate();
             System.out.println("yaha andar tak aa taha hu");
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        }
 
         return flag;
     }
@@ -287,16 +289,16 @@ public class User {
             String query = "select user_id from users where phone = ?";
 
             PreparedStatement ps = con.prepareStatement(query);
-            
+
             ps.setString(1, enteredPhone);
 
             ResultSet rs = ps.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -312,16 +314,16 @@ public class User {
             String query = "select user_id from users where email = ?";
 
             PreparedStatement ps = con.prepareStatement(query);
-            
+
             ps.setString(1, enteredEmail);
 
             ResultSet rs = ps.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -349,11 +351,11 @@ public class User {
 
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -375,11 +377,37 @@ public class User {
 
             int result = ps.executeUpdate();
 
-            if(result == 1) {
+            if (result == 1) {
                 flag = true;
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
+    public boolean increaseBookCount() {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "update users set book_added=? where user_id=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, bookAdded);
+            ps.setInt(2, userId);
+
+            int result = ps.executeUpdate();
+
+            if (result == 1) {
+                flag = true;
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 
@@ -28,6 +30,19 @@ public class Book {
 
     public Book() {
 
+    }
+
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies, Date publishDate, String description, User user, String bookImg) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.price = price;
+        this.availableCopies = availableCopies;
+        this.publishDate = publishDate;
+        this.description = description;
+        this.user = user;
+        this.bookImg = bookImg;
     }
 
     public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies, Integer totalCopies, Date publishDate, String description, Date date, User user, String bookImg, Integer likes) {
@@ -148,6 +163,32 @@ public class Book {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public static ArrayList<Book> getAllBooks(User user) {
+        ArrayList<Book> books = new ArrayList<>();
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "select book_id, title, author, b.genre_id, g.name, price, available_copies, publish_date, description, book_img from books as b inner join genres as g where b.genre_id=g.genre_id and user_id=?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, user.getUserId());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getInt(7), rs.getDate(8), rs.getString(9), user, rs.getString(10));
+
+                books.add(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
     }
 
     public boolean saveOnSaleBook() {

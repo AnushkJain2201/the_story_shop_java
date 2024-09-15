@@ -96,9 +96,23 @@ public class AddBookServlet extends HttpServlet {
 
             if(user.getUserType()) {
                 book.setAuthor(user.getName());
-                book.saveOnSaleBook();
+                if(book.saveOnSaleBook()) {
+                    int currentBook = user.getBookAdded();
+                    currentBook += 1;
+                    user.setBookAdded(currentBook);
+                    if(user.increaseBookCount()) {
+                        session.setAttribute("user", user);
+                    }
+                }
             } else {
-                book.saveOnRentBook();
+                if(book.saveOnRentBook()) {
+                    int currentBook = user.getBookAdded();
+                    currentBook += 1;
+                    user.setBookAdded(currentBook);
+                    if(user.increaseBookCount()) {
+                        session.setAttribute("user", user);
+                    }
+                }
             }
 
 

@@ -451,7 +451,8 @@
                                     <label for="genre"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
                                     <select id="genre"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" name="genre">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        name="genre">
                                         <option selected="">Select genre</option>
                                         <c:forEach var="genre" items="${genres}">
                                             <option value="${genre.genreId}">
@@ -475,7 +476,8 @@
                                 <c:if test="${user.userType}">
                                     <div class="col-span-2">
                                         <label for="available-copies"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Copies</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available
+                                            Copies</label>
                                         <input type="number" name="available-copies" id="available-copies"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="500" required="">
@@ -485,9 +487,11 @@
                                 <c:if test="${user.userType}">
                                     <div class="col-span-2">
                                         <label for="publish-date"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Publication Date</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Publication
+                                            Date</label>
                                         <input type="date" name="publish-date" id="publish-date"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            required="">
                                     </div>
                                 </c:if>
 
@@ -671,10 +675,61 @@
 
                                 <!-- Books Section -->
                                 <div
-                                    class="h-auto md:h-[58%] rounded-lg border border-gray-700 flex flex-col justify-center items-center py-4 md:py-0">
-                                    <h1 class="text-2xl md:text-3xl font-bold text-gray-300 mb-5">
-                                        <span><i class="fa-solid fa-book mr-5"></i></span>No Books Added !!
-                                    </h1>
+                                    class="h-[650px] md:h-[58%] rounded-lg border border-gray-700 flex flex-col justify-center items-center py-4 md:py-0 ">
+                                    <c:choose>
+                                        <c:when test="${user.bookAdded > 0}">
+                                            <div
+                                                class="w-full h-[600px] md:h-[95%] px-2 text-white overflow-y-scroll my-1 rounded-lg ">
+
+                                                <c:forEach var="book" items="${books}">
+                                                    <div
+                                                        class="w-full h-full my-4 rounded-md bg-gray-800 flex flex-col md:flex-row justify-around gap-1 items-center px-2 md:py-0 py-2">
+                                                        <div
+                                                            class="w-full md:w-[35%] h-[45%] md:h-[95%] ml-0 md:ml-8 mt-4 md:mt-0 ">
+                                                            <img src="show_book_image.do?book-path=${book.bookImg}" alt="hmm"
+                                                                class="object-contain w-full h-full">
+                                                        </div>
+                                                        <div
+                                                            class="w-full md:h-[95%] flex-1 p-1 md:p-2 text-center text-wrap md:text-nowrap flex justify-center items-center flex-col gap-2 md:gap-4 overflow-y-scroll">
+                                                            <h1
+                                                                class="text-3xl md:text-4xl font-sans font-semibold uppercase"><c:out value="${book.title}" /></h1>
+                                                            <h1
+                                                                class="text-xl md:text-2xl italic font-medium capitalize">
+                                                                By <c:out value="${book.author}" /><span></span></h1>
+
+                                                            <div
+                                                                class="flex justify-center items-center gap-2 md:gap-16 flex-col md:flex-row w-full">
+                                                                <h1 class="text-lg md:text-xl font-thin">&#8377;<c:out value="${book.price}" /></h1>
+                                                                <h1 class="capitalize text-lg md:text-xl font-thin">
+                                                                    <c:out value="${book.genre.name}" /></h1>
+                                                            </div>
+
+                                                            <c:if test="${user.userType}">
+                                                                <h1 class="text-lg md:text-xl font-thin">Publication
+                                                                    date: <c:out value="${book.publishDate}" /></h1>
+                                                                <h1 class="capitalize text-lg md:text-xl font-thin">
+                                                                    Available copies: <c:out value="${book.availableCopies}" /></h1>
+                                                            </c:if>
+
+                                                            <div class="w-full text-wrap text-xs">
+                                                                <c:out value="${book.description}" />
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </c:forEach>
+
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <h1 class="text-2xl md:text-3xl font-bold text-gray-300 mb-5">
+                                                <span><i class="fa-solid fa-book mr-5"></i></span>No Books Added !!
+                                            </h1>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                     <button type="button" data-modal-target="book-to-add-modal"
                                         data-modal-toggle="book-to-add-modal"
                                         class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-xs px-10 py-2.5 text-center me-2 mb-2">
@@ -693,6 +748,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
 
 
                 </main>
@@ -735,6 +793,8 @@
                         }
 
                     });
+
+
                 </script>
         </body>
 
