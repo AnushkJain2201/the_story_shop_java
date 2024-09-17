@@ -30,5 +30,11 @@
         <function-class>elfuncs.GenreCompare</function-class>
         <function-signature>java.util.ArrayList compareGenre(java.util.ArrayList, java.util.ArrayList)</function-signature>
     </function>
+
+    <function>
+        <name>isLiked</name>
+        <function-class>elfuncs.IsLiked</function-class>
+        <function-signature>boolean isTheBookLiked(int, int)</function-signature>
+    </function>
 </taglib>
 

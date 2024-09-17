@@ -35,6 +35,10 @@ public class User {
 
     }
 
+    public User(Integer userId) {
+        this.userId = userId;
+    }
+
     public User(String OTP) {
         this.OTP = OTP;
     }

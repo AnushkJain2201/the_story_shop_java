@@ -19,10 +19,14 @@ public class ExplorePageServlet extends HttpServlet {
 
         ArrayList<Book> rentalBooks = Book.collectRentalBooks();
         ArrayList<Book> saleBooks = Book.collectSaleBooks();
-        
+
         session.setAttribute("rentalbooks", rentalBooks);
         session.setAttribute("salebooks", saleBooks);
 
         request.getRequestDispatcher("explore.jsp").forward(request, response);
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doGet(request, response);
     }
 }

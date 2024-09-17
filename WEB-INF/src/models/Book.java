@@ -32,9 +32,15 @@ public class Book {
 
     }
 
-    // Book(bookId, title, author, new Genre(genreId, name), price, description, new User(userId, name, email), bookImg, likes)
+    public Book(Integer bookId) {
+        this.bookId = bookId;
+    }
 
-    public Book(Integer bookId, String title, String author, Genre genre, Integer price, String description, User user, String bookImg, Integer likes) {
+    // Book(bookId, title, author, new Genre(genreId, name), price, description, new
+    // User(userId, name, email), bookImg, likes)
+
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, String description, User user,
+            String bookImg, Integer likes) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -46,7 +52,8 @@ public class Book {
         this.likes = likes;
     }
 
-    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies, Date publishDate, String description, User user, String bookImg, Integer likes) {
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, Integer availableCopies,
+            Date publishDate, String description, User user, String bookImg, Integer likes) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -209,21 +216,79 @@ public class Book {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getInt(7), rs.getDate(8), rs.getString(9), new User(rs.getInt(10), rs.getString(13), rs.getString(14)), rs.getString(11), rs.getInt(12));
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getInt(7), rs.getDate(8),
+                        rs.getString(9), new User(rs.getInt(10), rs.getString(13), rs.getString(14)), rs.getString(11),
+                        rs.getInt(12));
 
                 saleBooks.add(book);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return saleBooks;
     }
 
+    public static boolean decreaseBookLikes(int bookId, int likes) {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "update books set likes = ? where book_id = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, likes);
+            ps.setInt(2, bookId);
+
+            int result = ps.executeUpdate();
+            System.out.println("yaha andar tak aa taha hu");
+
+            if (result == 1) {
+                flag = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
+    public static boolean increaseBookLikes(int bookId, int likes) {
+        boolean flag = false;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "update books set likes = ? where book_id = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, likes);
+            ps.setInt(2, bookId);
+
+            int result = ps.executeUpdate();
+            System.out.println("yaha andar tak aa taha hu");
+
+            if (result == 1) {
+                flag = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
     public static ArrayList<Book> collectRentalBooks() {
         ArrayList<Book> rentalBooks = new ArrayList<>();
 
-        // Book(bookId, title, author, new Genre(genreId, name), price, description, new User(userId, name, email), bookImg, likes)
+        // Book(bookId, title, author, new Genre(genreId, name), price, description, new
+        // User(userId, name, email), bookImg, likes)
 
         try {
             Connection con = DriverManager.getConnection(conURL);
@@ -235,11 +300,13 @@ public class Book {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getString(7), new User(rs.getInt(8), rs.getString(11), rs.getString(12)), rs.getString(9), rs.getInt(10));
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        new Genre(rs.getInt(4), rs.getString(5)), rs.getInt(6), rs.getString(7),
+                        new User(rs.getInt(8), rs.getString(11), rs.getString(12)), rs.getString(9), rs.getInt(10));
 
                 rentalBooks.add(book);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
