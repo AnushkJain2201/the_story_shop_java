@@ -35,6 +35,11 @@ public class User {
 
     }
 
+    public User(Integer userId, String name) {
+        this.userId = userId;
+        this.name = name;
+    }
+
     public User(Integer userId) {
         this.userId = userId;
     }

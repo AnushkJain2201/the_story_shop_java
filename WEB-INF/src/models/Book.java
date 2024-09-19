@@ -36,6 +36,19 @@ public class Book {
         this.bookId = bookId;
     }
 
+    // Book(bookId, title, author, genre, price, description, bookImg, likes, user)
+    public Book(Integer bookId, String title, String author, Genre genre, Integer price, String description, String bookImg, Integer likes, User user) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.price = price;
+        this.description = description;
+        this.bookImg = bookImg;
+        this.likes = likes;
+        this.user = user;
+    }
+
     // Book(bookId, title, author, new Genre(genreId, name), price, description, new
     // User(userId, name, email), bookImg, likes)
 
