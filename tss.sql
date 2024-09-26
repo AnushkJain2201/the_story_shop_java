@@ -1,7 +1,7 @@
 -- Database Start
 -- D
-CREATE DATABASE tssdb;
-USE tssdb;
+CREATE DATABASE tss;
+USE tss;
 
 -- Database End
 
@@ -458,3 +458,14 @@ CREATE TABLE wishlists
 );
 
 -- Wishlists End
+
+alter table premium_status change column card_expire_at card_expire_at varchar(20) null;
+
+CREATE TABLE carts 
+(
+    cart_id int not null auto_increment primary key,
+    user_id int not null,
+    book_id int not null,
+    constraint fk_carts_users foreign key (user_id) references users (user_id),
+    constraint fk_carts_books foreign key (book_id) references books (book_id) 
+);

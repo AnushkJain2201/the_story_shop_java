@@ -16,7 +16,36 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
         </head>
 
-        <body class="bg-gray-900">
+        <body class="bg-gray-900 relative">
+            <div class=" w-screen flex justify-center items-center added_cart_alert invisible fixed top-5 right-5">
+                <div id="toast-message-cta"
+                    class="w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-400"
+                    role="alert">
+                    <div class="flex">
+                        <!-- <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
+                                alt="Jese Leos image" /> -->
+
+                        <div class="ms-3 text-sm font-normal">
+                            <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">A Book Has Been Added To Cart.</span>
+                            <div class="mb-2 text-sm font-normal">Hi
+                                <c:out value='${user.name.split(" ")[0]}' />, thanks for adding
+                                <c:out value="a book" />
+                            </div>
+                        </div>
+                        <button type="button"
+                            class="ms-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700 close_added_button"
+                            >
+                            <span class="sr-only">Close</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
             <c:import url="header.jsp" />
 
             <div class="border-gray-700 border m-2 rounded-lg p-4">
@@ -107,7 +136,7 @@
                     class="w-full  max-h-[950px] p-2 my-2 flex justify-center items-center gap-4 overflow-y-scroll flex-wrap">
                     <c:forEach var="saleBook" items="${salebooks}">
                         <div
-                            class="w-full h-[700px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            class="w-full h-[700px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-y-scroll">
                             <a href="#">
                                 <img class="p-8 rounded-t-lg w-full h-[60%]"
                                     src="show_explore_book_img.do?path=${saleBook.bookImg}&email=${saleBook.user.email}"
@@ -167,9 +196,9 @@
                                     <span class="text-3xl font-bold text-gray-900 dark:text-white">&#8377;
                                         <c:out value="${saleBook.price}" />
                                     </span>
-                                    <a href="#"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
-                                        to cart</a>
+                                    <button id="${saleBook.bookId}"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cart-button disabled:bg-gray-500">Add
+                                        to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -180,6 +209,43 @@
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
             <script src="static/js/explore.js"></script>
+            <script>
+                // Select all buttons with class 'myButton'
+                const buttons = document.querySelectorAll('.cart-button');
+                const closeButton = document.querySelector(".close_added_button");
+
+                closeButton.addEventListener('click', () => {
+                    document.querySelector(".added_cart_alert").classList.remove("visible");
+                    document.querySelector(".added_cart_alert").classList.add("invisible");
+                });
+
+                const addToCart = async (bookId) => {
+                    let response = await fetch('add_book_to_cart?book_id=' + bookId);
+                    let result = await response.text();
+
+                    return result;
+                }
+
+                const handleAddToCart = (e) => {
+                    console.log(e.target.id);
+                    addToCart(e.target.id).then((data) => {
+                        if (data == "true") {
+                            e.target.disabled = true;
+                            e.target.innerText = "Added to Cart";
+                            document.querySelector(".added_cart_alert").classList.toggle("invisible");
+                            
+                        }
+                    }).catch((error) => {
+                        console.error(error);
+                        alert("An error occurred while adding the book to the cart.");
+                    })
+                }
+
+                // Loop through all buttons and attach a click event listener
+                buttons.forEach(button => {
+                    button.addEventListener('click', handleAddToCart);
+                });
+            </script>
         </body>
 
         </html>

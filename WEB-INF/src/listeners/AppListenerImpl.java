@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 
 import models.Admin;
 import models.Book;
+import models.Cart;
 import models.Country;
 import models.Genre;
 import models.GenreFavourite;
@@ -72,6 +73,9 @@ public class AppListenerImpl implements ServletContextListener{
 
         Wishlist.appContext = context;
         Wishlist.conURL = conURL;
+
+        Cart.appContext = context;
+        Cart.conURL = conURL;
 
         System.out.println("-____TSS STARTING____-");
 
