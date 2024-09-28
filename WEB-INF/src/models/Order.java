@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
@@ -31,10 +32,41 @@ public class Order {
         this.orderQuantity = orderQuantity;
     }
 
+    public static ArrayList<Order> getOrders(Integer userId) {
+        ArrayList<Order> orders = new ArrayList<>();
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "select * from orders where user_id = ?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, userId);
+            
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                Order order = new Order();
+                order.setOrderId(rs.getInt("order_id"));
+                order.setUser(new User(rs.getInt("user_id")));
+                order.setOrderDate(rs.getDate("order_date"));
+                order.setTotalAmount(rs.getInt("total_amount"));
+                order.setOrderQuantity(rs.getInt("order_quantitiy"));
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
     public Integer saveOrder() {
         Integer orderID = null;
         ResultSet generatedKey = null;
-         try {
+        try {
             Connection con = DriverManager.getConnection(conURL);
 
             String query = "insert into orders (user_id, total_amount, order_quantitiy) values (?, ?, ?)";
@@ -47,11 +79,11 @@ public class Order {
 
             int result = ps.executeUpdate();
 
-            if(result > 0) {
+            if (result > 0) {
                 generatedKey = ps.getGeneratedKeys();
-                if(generatedKey.next()) {
+                if (generatedKey.next()) {
                     orderID = generatedKey.getInt(1);
-                } 
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,5 +132,4 @@ public class Order {
         this.orderQuantity = orderQuantity;
     }
 
-    
 }
