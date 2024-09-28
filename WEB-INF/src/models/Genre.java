@@ -29,6 +29,31 @@ public class Genre {
         this.name = name;
     }
 
+    public static Genre findById(Integer genreId) {
+        Genre genre = null;
+
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "select * from genres where genre_id =?";
+
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, genreId);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                genre = new Genre(rs.getInt(1), rs.getString(2));
+            }
+
+            con.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return genre;
+    }
+
     public static ArrayList<Genre> collectAllGenres() {
         ArrayList<Genre> genres = new ArrayList<>();
 

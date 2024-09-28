@@ -1,5 +1,10 @@
 package models;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.servlet.ServletContext;
 
 public class OrderItem {
@@ -22,6 +27,31 @@ public class OrderItem {
         this.book = book;
         this.quantity = quantity;
         this.subtotal = subtotal;
+    }
+
+    public boolean saveOrderItem() {
+        boolean flag = false;
+        try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "insert into order_items (order_id, book_id, quantity, subtotal) values (?, ?, ?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, order.getOrderId());
+            ps.setInt(2, book.getBookId());
+            ps.setInt(3, quantity);
+            ps.setInt(4, subtotal);
+
+            int result = ps.executeUpdate();
+
+            if (result > 0) {
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     public Integer getOrderItemId() {
@@ -64,5 +94,4 @@ public class OrderItem {
         this.subtotal = subtotal;
     }
 
-    
 }

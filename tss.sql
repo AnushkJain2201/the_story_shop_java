@@ -469,3 +469,6 @@ CREATE TABLE carts
     constraint fk_carts_users foreign key (user_id) references users (user_id),
     constraint fk_carts_books foreign key (book_id) references books (book_id) 
 );
+
+ALTER TABLE orders
+MODIFY COLUMN order_date DATETIME DEFAULT CURRENT_TIMESTAMP;

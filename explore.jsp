@@ -26,15 +26,15 @@
                                 alt="Jese Leos image" /> -->
 
                         <div class="ms-3 text-sm font-normal">
-                            <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">A Book Has Been Added To Cart.</span>
+                            <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">A Book Has Been Added
+                                To Cart.</span>
                             <div class="mb-2 text-sm font-normal">Hi
                                 <c:out value='${user.name.split(" ")[0]}' />, thanks for adding
                                 <c:out value="a book" />
                             </div>
                         </div>
                         <button type="button"
-                            class="ms-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700 close_added_button"
-                            >
+                            class="ms-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700 close_added_button">
                             <span class="sr-only">Close</span>
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">
@@ -196,9 +196,27 @@
                                     <span class="text-3xl font-bold text-gray-900 dark:text-white">&#8377;
                                         <c:out value="${saleBook.price}" />
                                     </span>
-                                    <button id="${saleBook.bookId}"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cart-button disabled:bg-gray-500">Add
-                                        to cart</button>
+
+                                    <c:if test="${user != null}">
+
+                                        <c:choose>
+                                            <c:when test="${cartbookids.contains(saleBook.bookId)}">
+                                                <button disabled
+                                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cart-button disabled:bg-gray-500">Added
+                                                    to cart</button>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <button id="${saleBook.bookId}"
+                                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cart-button disabled:bg-gray-500">Add
+                                                    to cart</button>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -233,7 +251,7 @@
                             e.target.disabled = true;
                             e.target.innerText = "Added to Cart";
                             document.querySelector(".added_cart_alert").classList.toggle("invisible");
-                            
+
                         }
                     }).catch((error) => {
                         console.error(error);

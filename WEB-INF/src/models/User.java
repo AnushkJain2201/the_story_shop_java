@@ -50,6 +50,11 @@ public class User {
 
     //Book(bookId, title, author, new Genre(genreId, name), price, availableCopies, publishDate, description, new User(userId, name, email), bookImg, likes)
 
+    public User(Integer userId, String email, int hi) {
+        this.userId = userId;
+        this.email = email;
+    }
+
     public User(Integer userId, String name, String email) {
         this.userId = userId;
         this.name = name;

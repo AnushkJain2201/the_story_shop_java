@@ -1,5 +1,10 @@
 package models;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
@@ -24,6 +29,35 @@ public class Order {
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.orderQuantity = orderQuantity;
+    }
+
+    public Integer saveOrder() {
+        Integer orderID = null;
+        ResultSet generatedKey = null;
+         try {
+            Connection con = DriverManager.getConnection(conURL);
+
+            String query = "insert into orders (user_id, total_amount, order_quantitiy) values (?, ?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            ps.setInt(1, user.getUserId());
+            ps.setInt(2, totalAmount);
+            ps.setInt(3, orderQuantity);
+
+            int result = ps.executeUpdate();
+
+            if(result > 0) {
+                generatedKey = ps.getGeneratedKeys();
+                if(generatedKey.next()) {
+                    orderID = generatedKey.getInt(1);
+                } 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orderID;
     }
 
     public Integer getOrderId() {
