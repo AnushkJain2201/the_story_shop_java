@@ -29,7 +29,7 @@
 
   <context-param>
     <param-name>host</param-name>
-    <param-value>conqueror.c73naxscslsv.us-east-1.rds.amazonaws.com</param-value>
+    <param-value>localhost</param-value>
   </context-param>
   
   <context-param>
@@ -49,7 +49,7 @@
 
   <context-param>
     <param-name>pwdSql</param-name>
-    <param-value>aryan1234</param-value>
+    <param-value>1234</param-value>
   </context-param>
 
   <context-param>
